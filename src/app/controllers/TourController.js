@@ -27,6 +27,26 @@ class TourController {
       .then(() => res.redirect("/"))
       .catch((error) => {});
   }
+
+  // [GET] /tours/:id/edit
+  edit(req, res, next) {
+    Tours.findById(req.params.id)
+      .then((tour) =>
+        res.render("tours/edit", { tour: mongooseToObject(tour) }),
+      )
+      .catch(next);
+  }
+
+  // [PUT] /tours/:id
+  update(req, res, next) {
+    Tours.updateOne({ _id: req
+      .params.id }, req.body)
+      .then(() => res.redirect("/admin/stored/tours"))
+      .catch(next);
+  
+    }
+   
+  
 }
 
 module.exports = new TourController();

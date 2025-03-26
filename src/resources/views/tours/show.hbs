@@ -1,12 +1,93 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T{{tour.name}}</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
 <div class="mt4">
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-md-4">
             <button>Xem ngay</button>
         </div>
-         <div class="col-lg-9">
+         <div class="col-md-5">
             <h2>{{tour.name}}</h2>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/{{tour.videoid}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <p>{{tour.thongtin}}</p>
         </div>
     </div>
+
+ <section class="container my-5">
+       <div class="row">
+    <div class="col-md-4">
+        <i class="bi bi-geo-alt"></i> <strong>Điểm tham quan</strong>
+        <p>Hà Nội, Hà Giang, Mã Pí Lèng, Mèo Vạc...</p>
+    </div>
+    <div class="col-md-4">
+        <i class="bi bi-egg-fried"></i> <strong>Ẩm thực</strong>
+        <p>Theo thực đơn, Đặc sản địa phương</p>
+    </div>
+    <div class="col-md-4">
+        <i class="bi bi-people"></i> <strong>Đối tượng thích hợp</strong>
+        <p>Cặp đôi, Thanh niên</p>
+    </div>
+</div>
+
+    </section>
+
+     <section class="container my-5">
+        <h2 class="text-center fw-bold">THÔNG TIN THÊM VỀ CHUYẾN ĐI</h2>
+        <div class="row text-center mt-4">
+            <div class="col-md-4">
+                <img src="icons/location.png" alt="Địa điểm" class="mb-2">
+                <h5>Điểm tham quan</h5>
+                <p>Hà Nội, Hà Giang, Mã Pí Lèng, Mèo Vạc, Thác Bản Giốc...</p>
+            </div>
+            <div class="col-md-4">
+                <img src="icons/food.png" alt="Ẩm thực" class="mb-2">
+                <h5>Ẩm thực</h5>
+                <p>Theo thực đơn, đặc sản địa phương</p>
+            </div>
+            <div class="col-md-4">
+                <img src="icons/people.png" alt="Đối tượng thích hợp" class="mb-2">
+                <h5>Đối tượng thích hợp</h5>
+                <p>Cặp đôi, Thanh niên</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="text-center fw-bold">LỊCH TRÌNH</h2>
+        <div class="accordion" id="tourSchedule">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#day1">
+                        {{!-- Ngày 1: Sân bay Nội Bài - Hà Nội --}}
+                        {{tour.lichtrinh}}
+                    </button>
+                </h2>
+                <div id="day1" class="accordion-collapse collapse show" data-bs-parent="#tourSchedule">
+                    <div class="accordion-body">
+                        Đón khách tại sân bay, tham quan Hà Nội.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day2">
+                        Ngày 2: Hà Nội - Hà Giang
+                    </button>
+                </h2>
+                <div id="day2" class="accordion-collapse collapse" data-bs-parent="#tourSchedule">
+                    <div class="accordion-body">
+                        Số bữa ăn: 01 (sáng). Khởi hành đi Hà Giang.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 </div>

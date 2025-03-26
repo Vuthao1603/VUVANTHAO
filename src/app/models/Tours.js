@@ -14,6 +14,7 @@ const Tours = new Schema(
     image: { type: String },
     slug: { type: String, slug: "name", unique: true },
     videoid: { type: String },
+    date:{type:Date}
   },
   {
     timestamps: true,

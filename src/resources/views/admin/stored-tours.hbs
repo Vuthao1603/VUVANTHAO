@@ -5,19 +5,24 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Ten tour</th>
+                        <th scope="col">Ma tour</th>
+                        <th scope="col" colspan="2">Thoi gian</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each tours}}
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row">{{sum @index 1}}</th>
+                        <td>{{this.name}}</td>
+                        <td>{{this.matour}}</td>
+                        <td>{{this.createdAt}}</td>
+                        <td>
+                            <a href="/tours/{{this._id}}/edit" class="btn btn-outline-primary">Sua</a>
+                            <a href="" class="btn btn-outline-danger">Xoa</a>
+                        </td>
                     </tr>
-                   
+                   {{/each}}
                 </tbody>
         </table>
 
