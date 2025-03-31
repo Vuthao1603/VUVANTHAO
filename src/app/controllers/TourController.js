@@ -39,14 +39,17 @@ class TourController {
 
   // [PUT] /tours/:id
   update(req, res, next) {
-    Tours.updateOne({ _id: req
-      .params.id }, req.body)
+    Tours.updateOne({ _id: req.params.id }, req.body)
       .then(() => res.redirect("/admin/stored/tours"))
       .catch(next);
-  
-    }
-   
-  
+  }
+
+  // [DELETE] /tours/:id
+  destroy(req, res, next) {
+    Tours.deleteOne({ _id: req.params.id })
+      .then(() => res.redirect("back"))
+      .catch(next);
+  }
 }
 
 module.exports = new TourController();

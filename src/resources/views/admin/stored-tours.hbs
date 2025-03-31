@@ -19,13 +19,69 @@
                         <td>{{this.createdAt}}</td>
                         <td>
                             <a href="/tours/{{this._id}}/edit" class="btn btn-outline-primary">Sua</a>
-                            <a href="" class="btn btn-outline-danger">Xoa</a>
+                            <a href=""  class="btn btn-outline-danger"  data-id="{{this._id}}"  data-bs-toggle="modal" data-bs-target="#delete-tour-model">Xoa</a>
                         </td>
                     </tr>
                    {{/each}}
                 </tbody>
         </table>
 
-       
-
 </div>
+
+{{!Conform delete modal}}
+<div id="delete-tour-model" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xoa tour ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Ban chac chan muon xoa tour</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-tour" type="button" class="btn btn-danger">Xoa bo</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{!Delete hidden form}}
+ <form name="delete-tour-form" method="POST"></form>
+
+
+<script>
+    
+    {{!-- var deleteForm = document.forms['delete-tour-form']
+    var delete-tour-model = document.getElementById('delete-tour-model')
+     var btn-delete-tour = document.getElementById('btn-delete-tour')
+    delete-tour-model.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        var id = button.getAttribute('data-id')
+
+    });
+   
+    btn-delete-tour.addEventListener('click', function (event) {
+        deleteForm.action = '/tours/' + id + '?_method=DELETE'
+        deleteForm.submit()
+    }); --}}
+
+
+      var selectedTourId = null; // Tạo biến toàn cục để lưu id của tour cần xóa
+
+    deleteTourModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Lấy button nhấn mở modal
+        selectedTourId = button.getAttribute('data-id'); // Lưu id của tour
+    });
+
+    btnDeleteTour.addEventListener('click', function () {
+        if (selectedTourId) {
+            deleteForm.action = '/tours/' + selectedTourId + '?_method=DELETE';
+            deleteForm.submit();
+        }
+    });
+
+
+</script>
