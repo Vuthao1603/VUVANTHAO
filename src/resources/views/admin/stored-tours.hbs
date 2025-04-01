@@ -51,37 +51,30 @@
 {{!Delete hidden form}}
  <form name="delete-tour-form" method="POST"></form>
 
-
 <script>
-    
-    {{!-- var deleteForm = document.forms['delete-tour-form']
-    var delete-tour-model = document.getElementById('delete-tour-model')
-     var btn-delete-tour = document.getElementById('btn-delete-tour')
-    delete-tour-model.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget
-        var id = button.getAttribute('data-id')
 
-    });
-   
-    btn-delete-tour.addEventListener('click', function (event) {
-        deleteForm.action = '/tours/' + id + '?_method=DELETE'
-        deleteForm.submit()
-    }); --}}
+      var deleteForm = document.forms['delete-tour-form'];
+      var deleteTourModal = document.getElementById('delete-tour-model'); // Lấy modal
+      var btnDeleteTour = document.getElementById('btn-delete-tour'); // Lấy nút xóa
 
+      var selectedTourId = null; // Biến toàn cục để lưu id của tour cần xóa
 
-      var selectedTourId = null; // Tạo biến toàn cục để lưu id của tour cần xóa
+      // Lắng nghe sự kiện khi modal hiển thị
+      deleteTourModal.addEventListener('show.bs.modal', function (event) {
+          var button = event.relatedTarget; // Lấy button mở modal
+          if (button) {
+              selectedTourId = button.getAttribute('data-id'); // Lưu id của tour
+          }
+      });
 
-    deleteTourModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget; // Lấy button nhấn mở modal
-        selectedTourId = button.getAttribute('data-id'); // Lưu id của tour
-    });
+      // Xử lý khi ấn nút "Xóa bỏ"
+      btnDeleteTour.addEventListener('click', function () {
+          if (selectedTourId) {
+              deleteForm.action = '/tours/' + selectedTourId + '?_method=DELETE';
+              deleteForm.submit();
+          }
+      });
 
-    btnDeleteTour.addEventListener('click', function () {
-        if (selectedTourId) {
-            deleteForm.action = '/tours/' + selectedTourId + '?_method=DELETE';
-            deleteForm.submit();
-        }
-    });
 
 
 </script>

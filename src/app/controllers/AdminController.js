@@ -12,6 +12,12 @@ class AdminController {
       )
       .catch((error) => next(error));
   }
+
+  // [GET] /admin
+  admin(req, res, next) {
+    res.render("admin/stored-tours" );
+  }
+
 }
 
 module.exports = new AdminController();
