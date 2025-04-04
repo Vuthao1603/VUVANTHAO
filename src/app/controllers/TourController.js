@@ -6,7 +6,7 @@ class TourController {
   show(req, res, next) {
     Tours.findOne({ slug: req.params.slug })
       .then((tour) => {
-        res.render("tours/show", { tour: mongooseToObject(tour) });
+        res.render("tours/show",{ tour: mongooseToObject(tour), layout:"detial-tour" } );
       })
       .catch(next);
   }
@@ -32,7 +32,7 @@ class TourController {
   edit(req, res, next) {
     Tours.findById(req.params.id)
       .then((tour) =>
-        res.render("tours/edit", { tour: mongooseToObject(tour) }),//fodel tours file edit.hbs
+        res.render("tours/edit", { tour: mongooseToObject(tour)})//fodel tours file edit.hbs
       )
       .catch(next);
   }

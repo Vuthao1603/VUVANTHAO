@@ -9,42 +9,91 @@ class AuthenController {
   }
   // [GET] /register
   showRegisterform(req, res, next) {
-    res.render("register", { layout: "login-layout" }); // Sử dụng layout login-layout.hbs
+    res.render("register", { layout: "register-layout" }); // Sử dụng layout login-layout.hbs
   }
   // [POST] /register
-  
+  async register(req, res, next) {
+    const { username, password, confirmPassword } = req.body;
+
+    // Kiểm tra mật khẩu xác nhận
+    if (password !== confirmPassword) {
+      return res.render('register', { 
+        layout: 'register-layout',
+        message: 'Mật khẩu xác nhận không khớp!'
+      });
+    }
+
+    try {
+      // Kiểm tra xem username đã tồn tại chưa
+      const existingUser = await Accounts.findOne({ username });
+      if (existingUser) {
+        return res.render('register', {
+          layout: 'register-layout',
+          message: 'Tên tài khoản đã tồn tại!'
+        });
+      }
+
+      // Mã hóa mật khẩu
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+
+      // Tạo tài khoản mới
+      const newUser = new Accounts({
+        username,
+        password: hashedPassword,
+        role: "user",
+      });
+
+      // Lưu tài khoản vào MongoDB
+      await newUser.save();
+      
+      // Chuyển hướng đến trang đăng nhập với thông báo thành công
+      return res.render('login', {
+        layout: 'login-layout',
+        success: 'Đăng ký thành công! Vui lòng đăng nhập.'
+      });
+    } catch (error) {
+      console.error("Lỗi khi đăng ký tài khoản:", error);
+      res.render('register', {
+        layout: 'register-layout',
+        message: 'Đã xảy ra lỗi trong quá trình đăng ký!'
+      });
+    }
+  }
 
   // [POST] /login
   async login(req, res, next) {
     const { username, password } = req.body;
 
     try {
-      // Tìm người dùng trong MongoDB
       const user = await Accounts.findOne({ username });
       if (!user) {
-        return res.status(401).json({ message: "Tài khoản không tồn tại!" });
+        return res.render('login', {
+          layout: 'login-layout',
+          message: 'Tài khoản không tồn tại!'
+        });
       }
 
-      // Kiểm tra mật khẩu
-      // const isPasswordValid = await bcrypt.compare(password, user.password);
-      // if (!isPasswordValid) {
-      //   return res.status(401).json({ message: "Sai mật khẩu!" });
-      // }
-      if (password !== user.password) {
-        return res.status(401).json({ message: "Sai mật khẩu!" });
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      if (!isPasswordValid) {
+        return res.render('login', {
+          layout: 'login-layout',
+          message: 'Sai mật khẩu!'
+        });
       }
 
       // Chuyển hướng dựa trên vai trò
       if (user.role === "admin") {
-        return res.redirect("/admin"); // Chuyển hướng đến trang admin
+        return res.redirect("/admin");
       } else if (user.role === "user") {
-        return res.redirect("/"); // Chuyển hướng đến trang chủ
-      } else {
-        return res.status(403).json({ message: "Vai trò không hợp lệ!" });
+        return res.redirect("/");
       }
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
-      res.status(500).json({ message: "Đã xảy ra lỗi!" });
+      res.render('login', {
+        layout: 'login-layout',
+        message: 'Đã xảy ra lỗi trong quá trình đăng nhập!'
+      });
     }
   }
 }
