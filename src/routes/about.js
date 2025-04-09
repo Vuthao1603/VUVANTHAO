@@ -5,5 +5,4 @@ const aboutController = require("../app/controllers/AboutController");
 
 router.get("/", aboutController.index);
 
-
 module.exports = router;

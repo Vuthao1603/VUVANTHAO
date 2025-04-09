@@ -17,9 +17,9 @@ class AuthenController {
 
     // Kiểm tra mật khẩu xác nhận
     if (password !== confirmPassword) {
-      return res.render('register', { 
-        layout: 'register-layout',
-        message: 'Mật khẩu xác nhận không khớp!'
+      return res.render("register", {
+        layout: "register-layout",
+        message: "Mật khẩu xác nhận không khớp!",
       });
     }
 
@@ -27,9 +27,9 @@ class AuthenController {
       // Kiểm tra xem username đã tồn tại chưa
       const existingUser = await Accounts.findOne({ username });
       if (existingUser) {
-        return res.render('register', {
-          layout: 'register-layout',
-          message: 'Tên tài khoản đã tồn tại!'
+        return res.render("register", {
+          layout: "register-layout",
+          message: "Tên tài khoản đã tồn tại!",
         });
       }
 
@@ -46,17 +46,17 @@ class AuthenController {
 
       // Lưu tài khoản vào MongoDB
       await newUser.save();
-      
+
       // Chuyển hướng đến trang đăng nhập với thông báo thành công
-      return res.render('login', {
-        layout: 'login-layout',
-        success: 'Đăng ký thành công! Vui lòng đăng nhập.'
+      return res.render("login", {
+        layout: "login-layout",
+        success: "Đăng ký thành công! Vui lòng đăng nhập.",
       });
     } catch (error) {
       console.error("Lỗi khi đăng ký tài khoản:", error);
-      res.render('register', {
-        layout: 'register-layout',
-        message: 'Đã xảy ra lỗi trong quá trình đăng ký!'
+      res.render("register", {
+        layout: "register-layout",
+        message: "Đã xảy ra lỗi trong quá trình đăng ký!",
       });
     }
   }
@@ -68,17 +68,17 @@ class AuthenController {
     try {
       const user = await Accounts.findOne({ username });
       if (!user) {
-        return res.render('login', {
-          layout: 'login-layout',
-          message: 'Tài khoản không tồn tại!'
+        return res.render("login", {
+          layout: "login-layout",
+          message: "Tài khoản không tồn tại!",
         });
       }
 
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
-        return res.render('login', {
-          layout: 'login-layout',
-          message: 'Sai mật khẩu!'
+        return res.render("login", {
+          layout: "login-layout",
+          message: "Sai mật khẩu!",
         });
       }
 
@@ -90,9 +90,9 @@ class AuthenController {
       }
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
-      res.render('login', {
-        layout: 'login-layout',
-        message: 'Đã xảy ra lỗi trong quá trình đăng nhập!'
+      res.render("login", {
+        layout: "login-layout",
+        message: "Đã xảy ra lỗi trong quá trình đăng nhập!",
       });
     }
   }

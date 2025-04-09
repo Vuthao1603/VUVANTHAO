@@ -8,5 +8,4 @@ router.get("/search", siteController.search);
 router.get("/alltour", siteController.index);
 router.get("/", siteController.index1); //cai nay phai o duoi
 
-
 module.exports = router;

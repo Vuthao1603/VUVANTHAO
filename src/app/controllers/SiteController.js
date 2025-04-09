@@ -14,7 +14,7 @@ class SiteController {
 
   // [GET] /search
   search(req, res, next) {
-    res.render("search");//search là trang .hbs
+    res.render("search"); //search là trang .hbs
   }
   // [GET] /home
   index1(req, res, next) {
@@ -24,8 +24,6 @@ class SiteController {
       })
       .catch(next);
   }
- 
-
 }
 
 module.exports = new SiteController();
