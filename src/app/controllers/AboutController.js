@@ -6,9 +6,6 @@ class AboutController {
     res.render("about", { layout: "about-layout" });
   }
 
-  // GET about/:slug page
-  show(req, res) {
-    res.send("ABOUT DETAIL!");
-  }
+
 }
 module.exports = new AboutController();
