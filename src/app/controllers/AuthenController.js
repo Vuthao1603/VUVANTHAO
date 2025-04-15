@@ -25,6 +25,7 @@ class AuthenController {
 
     try {
       // Kiểm tra xem username đã tồn tại chưa
+
       const existingUser = await Accounts.findOne({ username });
       if (existingUser) {
         return res.render("register", {
