@@ -7,16 +7,17 @@ class AuthenController {
   showLoginform(req, res, next) {
     res.render("login", { layout: "login-layout" }); // Sử dụng layout login-layout.hbs
   }
-  // [GET] /register
+
   showRegisterform(req, res, next) {
     res.render("register", { layout: "register-layout" }); // Sử dụng layout login-layout.hbs
   }
   // [POST] /register
   async register(req, res, next) {
-    const { username, password, confirmPassword } = req.body;
+    // Lấy dữ liệu từ request body
+    const { username, password, confirmpassword } = req.body;
 
     // Kiểm tra mật khẩu xác nhận
-    if (password !== confirmPassword) {
+    if (password !== confirmpassword) {
       return res.render("register", {
         layout: "register-layout",
         message: "Mật khẩu xác nhận không khớp!",
@@ -65,9 +66,12 @@ class AuthenController {
   async login(req, res, next) {
     const { username, password } = req.body;
 
+    // Kiểm tra xem username và password có được cung cấp không
+
     try {
       const user = await Accounts.findOne({ username });
       if (!user) {
+        console.log("Tài khoản không tồn tại:", username);
         return res.render("login", {
           layout: "login-layout",
           message: "Tài khoản không tồn tại!",
@@ -76,22 +80,24 @@ class AuthenController {
 
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
+        console.log("Sai mật khẩu cho tài khoản:", username);
         return res.render("login", {
           layout: "login-layout",
           message: "Sai mật khẩu!",
         });
       }
 
-      // Chuyển hướng dựa trên vai trò
+
       if (user.role === "admin") {
+        console.log("Chuyển hướng đến trang admin");
         return res.redirect("/admin");
       } else if (user.role === "user") {
+        console.log("Chuyển hướng đến trang chính");
         return res.redirect("/");
       }
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
       res.render("login", {
-        layout: "login-layout",
         message: "Đã xảy ra lỗi trong quá trình đăng nhập!",
       });
     }

@@ -5,7 +5,5 @@ class AboutController {
   index(req, res, next) {
     res.render("about", { layout: "about-layout" });
   }
-
-
 }
 module.exports = new AboutController();

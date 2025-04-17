@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-<form action="/login" method="POST">
+<form action="/register" method="POST">
+<div id="error-message" style="display: none;" data-message="{{message}}"></div>
     <h3>Register Here</h3>
 
     <label for="username">Username</label>
@@ -20,7 +23,7 @@
     <input type="password" name="password" placeholder="Password" id="password" required>
 
     <label for="confirm-password">Confirm Password</label>
-    <input type="password" name="confirm-password" placeholder="Confirm Password" id="confirm-password" required>
+    <input type="password" name="confirmpassword" placeholder="Confirm Password" id="confirm-password" required>
 
     <button type="submit">Register</button>
     <p class="social-text">Login with a social media account</p>
@@ -31,5 +34,21 @@
         <button class="social-icon in"><i class="fa-brands fa-instagram"></i></button>
     </div>
 </form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const errorMessageElement = document.getElementById("error-message");
+    const message = errorMessageElement.getAttribute("data-message");
+
+    if (message) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: message,
+  });
+    }
+  });
+</script>
+
 </body>
 </html>

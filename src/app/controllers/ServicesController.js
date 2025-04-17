@@ -5,7 +5,5 @@ class ServicesController {
   index(req, res, next) {
     res.render("services", { layout: "about-layout" });
   }
-
- 
 }
 module.exports = new ServicesController();
