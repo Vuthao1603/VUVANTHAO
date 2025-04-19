@@ -13,7 +13,7 @@ const db = require("./config/db");
 db.connect();
 
 //HTttp loggern
-app.use(morgan("combined"));
+app.use(morgan("tiny"));
 app.use(express.static(path.join(__dirname, "public")));
 
 //Template engine
@@ -25,7 +25,7 @@ app.engine(
       sum: (a, b) => a + b, //de su dung trong handlebars store-tours.hbs
       tours: () => "Danh sách tour!", // Thêm helper tours
     },
-  }),
+  })
 );
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources", "views"));
@@ -42,5 +42,5 @@ app.use(methodOverride("_method"));
 route(app);
 
 app.listen(port, () =>
-  console.log(`Server is running on port at http://localhost:${port}`),
+  console.log(`Server is running on port at http://localhost:${port}`)
 );

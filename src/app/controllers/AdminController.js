@@ -15,7 +15,9 @@ class AdminController {
 
   // [GET] /admin
   admin(req, res, next) {
-    res.render("admin/stored-tours");
+    res.render("admin/admin", {
+      layout: "admin-layout",
+    });
   }
 }
 
