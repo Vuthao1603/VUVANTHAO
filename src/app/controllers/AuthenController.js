@@ -67,12 +67,9 @@ class AuthenController {
   async login(req, res, next) {
     const { username, password } = req.body;
 
-    // Kiểm tra xem username và password có được cung cấp không
-
     try {
       const user = await Accounts.findOne({ username });
       if (!user) {
-        console.log("Tài khoản không tồn tại:", username);
         return res.render("login", {
           layout: "login-layout",
           message: "Tài khoản không tồn tại!",
@@ -81,24 +78,28 @@ class AuthenController {
 
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
-        console.log("Sai mật khẩu cho tài khoản:", username);
         return res.render("login", {
           layout: "login-layout",
           message: "Sai mật khẩu!",
         });
       }
 
+      // Lưu thông tin người dùng vào session
+      req.session.user = {
+        id: user._id,
+        username: user.username,
+        role: user.role,
+      };
 
       if (user.role === "admin") {
-        console.log("Chuyển hướng đến trang admin");
         return res.redirect("/admin");
-      } else if (user.role === "user") {
-        console.log("Chuyển hướng đến trang chính");
+      } else {
         return res.redirect("/");
       }
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
       res.render("login", {
+        layout: "login-layout",
         message: "Đã xảy ra lỗi trong quá trình đăng nhập!",
       });
     }

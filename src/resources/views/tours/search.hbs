@@ -1,0 +1,19 @@
+<h3 class="text-center">Kết quả tìm kiếm cho: "{{query}}"</h3>
+<div class="row g-4 mt-4">
+    {{#if tours.length}}
+        {{#each tours}}
+            <div class="col-sm-6 col-lg-4">
+                <div class="card shadow-sm">
+                    <img src="{{this.image}}" class="card-img-top" alt="{{this.name}}">
+                    <div class="card-body">
+                        <h5>{{this.name}}</h5>
+                        <p class="text-muted">{{this.thongtin}}</p>
+                        <a href="/tours/{{this.slug}}" class="btn btn-primary w-100">Chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <p class="text-center text-muted">Không tìm thấy kết quả phù hợp.</p>
+    {{/if}}
+</div>

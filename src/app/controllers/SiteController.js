@@ -7,15 +7,12 @@ class SiteController {
   index(req, res, next) {
     Tours.find({}) // lấy tất cả dữ liệu trong bảng tours
       .then((tours) => {
-        res.render("alltour", { tours: mutipleMongooseToObject(tours) });
+        res.render("alltour2", { layout: "about-layout", tours: mutipleMongooseToObject(tours) });
       })
       .catch(next);
   }
 
-  // [GET] /search
-  search(req, res, next) {
-    res.render("search"); //search là trang .hbs
-  }
+
   // [GET] /home
   index1(req, res, next) {
     Tours.find({}) // lấy tất cả dữ liệu trong bảng tours

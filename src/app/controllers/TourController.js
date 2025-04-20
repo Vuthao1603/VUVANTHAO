@@ -7,8 +7,8 @@ class TourController {
     Tours.findOne({ slug: req.params.slug })
       .then((tour) => {
         res.render("tours/show", {
-          tour: mongooseToObject(tour),
           layout: "detial-tour",
+          tour: mongooseToObject(tour),
         });
       })
       .catch(next);
@@ -52,6 +52,20 @@ class TourController {
     Tours.deleteOne({ _id: req.params.id })
       .then(() => res.redirect("back"))
       .catch(next);
+  }
+
+  // [GET] /api/tours/search
+  liveSearch(req, res, next) {
+    const q = req.query.q; // Lấy từ khóa tìm kiếm từ query string
+
+    Tours.find({ name: { $regex: q, $options: "i" } }) // Tìm kiếm gần đúng theo tên
+      .then((tours) => {
+        res.json(tours); // Trả về kết quả dưới dạng JSON
+      })
+      .catch((error) => {
+        console.error("Lỗi tìm kiếm:", error);
+        res.status(500).json({ error: "Lỗi server" });
+      });
   }
 }
 

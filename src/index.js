@@ -3,6 +3,7 @@ const path = require("path");
 const morgan = require("morgan");
 const methodOverride = require("method-override");
 const handlebars = require("express-handlebars");
+const session = require("express-session");
 const app = express();
 const port = 3000;
 
@@ -34,6 +35,16 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//bao mat middlewaremiddleware//
+app.use(
+  session({
+    secret: "1632004thaook.", // Thay bằng khóa bí mật của bạn
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Đặt `true` nếu sử dụng HTTPS
+  }),
+);
 
 //HTTP method override
 app.use(methodOverride("_method"));
