@@ -1,0 +1,98 @@
+<div class="container py-5">
+  <h1 class="text-center mb-4">Đặt Tour</h1>
+  <div class="row">
+    <!-- Form bên trái -->
+    <div class="col-lg-6">
+      <form action="/tours/{{tour.slug}}/book" method="POST">
+        <h4 class="mb-3">Thông tin liên hệ</h4>
+
+        <div class="mb-3">
+          <label for="name" class="form-label">Họ và tên *</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email *</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Số điện thoại *</label>
+          <input type="text" class="form-control" id="phone" name="phone" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="address" class="form-label">Địa chỉ</label>
+          <input type="text" class="form-control" id="address" name="address">
+        </div>
+
+        <div class="mb-3">
+          <label for="soluong" class="form-label">Số lượng hành khách *</label>
+          <input type="number" class="form-control" id="soluong" name="soluong" min="1" value="1" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="departure" class="form-label">Ngày khởi hành *</label>
+          <input type="date" class="form-control" id="departure" name="departure" value="{{tour.ngaydi}}" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="note" class="form-label">Ghi chú</label>
+          <textarea class="form-control" id="note" name="note" rows="3" placeholder="Vui lòng nhập nội dung ghi chú bằng tiếng Việt hoặc tiếng Anh..."></textarea>
+        </div>
+
+        <!-- Điều khoản -->
+        <div class="mb-3">
+          <h5>Điều khoản bắt buộc khi đăng ký online</h5>
+          <div class="border p-3 mb-2" style="max-height: 250px; overflow-y: auto; font-size: 0.9rem;">
+            {{>dieukhoan}}
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="agree" name="agree" required>
+            <label class="form-check-label" for="agree">
+              Tôi đồng ý với <a href="#">Chính sách bảo vệ dữ liệu cá nhân</a> và <a href="#">các điều khoản trên</a>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mt-3">Xác nhận đặt tour</button>
+      </form>
+    </div>
+
+    <!-- Thông tin tour bên phải -->
+    <div class="col-lg-6">
+      <h4 class="mb-3">Thông tin chuyến đi</h4>
+      <div class="card mb-3">
+        <img src="{{tour.image}}" class="card-img-top" alt="{{tour.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{tour.name}}</h5>
+          <p class="card-text">{{tour.thongtin}}</p>
+          <ul class="list-unstyled">
+            <li><strong>Ngày đi:</strong> {{ngaydi}} - {{thoigiandi}}</li>
+            <li><strong>Ngày về:</strong> {{ngayve}} - {{thoigianve}}</li>
+            <li><strong>Điểm đi:</strong> {{tour.diemdi}} </li>
+            <li><strong>Điểm đến:</strong> {{tour.diemden}} </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Giá tour -->
+      <div class="border p-3 rounded shadow-sm">
+        <h5>Khách hàng + Phụ thu</h5>
+        <div class="d-flex justify-content-between">
+          <span>Người lớn</span>
+          <span>{{soluong}} x {{tour.gia}}đ</span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Phụ thu phòng đơn</span>
+          <span>0đ</span>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between text-danger fw-bold fs-5">
+          <span>Tổng tiền</span>
+          <span>{{ tour.gia}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -232,7 +232,7 @@
   .navbar.navbar-expand-lg .navbar-toggler {
     padding: 10px 20px;
     border: 1px solid var(--bs-primary);
-    color: var(--bs-primary);
+    color: var (--bs-primary);
   }
   .navbar-light .navbar-collapse {
     margin-top: 15px;
@@ -370,7 +370,7 @@
 /*** Carousel Hero Header End ***/
 /*** Single Page Hero Header Start ***/
 .bg-breadcrumb {
-  background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url(../img/breadcrumb-bg.jpg);
+  background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url("../img/breadcrumb-bg.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;

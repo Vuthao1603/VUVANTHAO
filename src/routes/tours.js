@@ -10,5 +10,7 @@ router.put("/:id", ensureAuthenticated, ensureAdmin, tourController.update);
 router.delete("/:id", ensureAuthenticated, ensureAdmin, tourController.destroy);
 router.get("/:slug", tourController.show);
 router.get("/api/search", tourController.liveSearch);
+router.get("/:slug/book", tourController.book);
+router.post("/:slug/book",tourController.handleBooking);
 
 module.exports = router;

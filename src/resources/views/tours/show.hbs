@@ -1,3 +1,7 @@
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
 <body>
       <!-- Navbar & Hero Start -->
         <div class="container-fluid position-relative p-0">
@@ -68,6 +72,62 @@
                 referrerpolicy="strict-origin-when-cross-origin" 
                 allowfullscreen>
             </iframe>
+            <!-- THÔNG TIN THÊM VỀ CHUYẾN ĐI -->
+            <div class="mt-5 p-4 bg-light rounded shadow-sm">
+            <h4 class="fw-bold mb-4 text-uppercase text-center">Thông tin thêm về chuyến đi</h4>
+            <div class="row g-4">
+
+                <div class="col-md-6 d-flex">
+                <i class="fa fa-map-marked-alt fa-2x text-primary me-3"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">Điểm tham quan</h6>
+                    <p class="mb-0 text-muted">Dịch Vụ Tham Quan, Vé 4 Giờ Bus 2 Tầng Sài Gòn, Chợ Lớn, Thưởng Thức Ẩm Thực...</p>
+                </div>
+                </div>
+
+                <div class="col-md-6 d-flex">
+                <i class="fa fa-utensils fa-2x text-primary me-3"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">Ẩm thực</h6>
+                    <p class="mb-0 text-muted">Thưởng thức các món ăn đặc sản trong tour.</p>
+                </div>
+                </div>
+
+                <div class="col-md-6 d-flex">
+                <i class="fa fa-user-friends fa-2x text-primary me-3"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">Đối tượng thích hợp</h6>
+                    <p class="mb-0 text-muted">Người lớn tuổi, Cặp đôi, Gia đình, Thanh niên, Trẻ em.</p>
+                </div>
+                </div>
+
+                <div class="col-md-6 d-flex">
+                <i class="fa fa-clock fa-2x text-primary me-3"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">Thời gian lý tưởng</h6>
+                    <p class="mb-0 text-muted">Quanh năm</p>
+                </div>
+                </div>
+
+            <div class="col-md-6 d-flex">
+            <i class="fa fa-bus fa-2x text-primary me-3"></i>
+            <div>
+                <h6 class="fw-bold mb-1">Phương tiện</h6>
+                <p class="mb-0 text-muted">Xe du lịch</p>
+            </div>
+            </div>
+
+            <div class="col-md-6 d-flex">
+            <i class="fa fa-tags fa-2x text-primary me-3"></i>
+            <div>
+                <h6 class="fw-bold mb-1">Khuyến mãi</h6>
+                <p class="mb-0 text-muted">Đã bao gồm trong giá tour</p>
+            </div>
+            </div>
+
+        </div>
+        </div>
+
         </div>
 
         <!-- Cột bên phải -->
@@ -76,38 +136,30 @@
                 <h4 class="fw-bold text">Thông tin tour</h4>
                 <p><strong>Giá:</strong> {{tour.gia}} VND</p>
                 <p><strong>Mã tour:</strong> {{tour.matour}}</p>
-                <p><strong>Thoi gian</strong>{{tour.date}}</p>
-                <button class="btn btn-primary w-100 mt-3">Đặt ngay</button>
+                <p><strong>Thoi gian</strong>{{tour.date}}</p>           
+                <a href="/tours/{{tour.slug}}/book" class="btn btn-primary w-100 btn-hover">Đặt ngay</a>
             </div>
         </div>
     </div>
 
-    <section class="container my-5">
-        <h3 class="text-center fw-bold text">THÔNG TIN THÊM VỀ CHUYẾN ĐI</h3>
-        <div class="row text-center mt-4">
-            <div class="col-md-4 mx-auto">
-                <p class="text-muted">{{tour.thongtin}}</p>
-            </div>
-        </div>
-    </section>
 
     <section class="container my-5">
         <h2 class="text-center fw-bold text-danger">LỊCH TRÌNH</h2>
         <div class="accordion shadow" id="tourSchedule">
+            {{#each tour.lichtrinh}}
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button text-primary fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#day1">
-                        
-                        {{tour.lichtrinh}}
+                    <button class="accordion-button text-primary fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#{{@index}}">
+                        {{this.day}}
                     </button>
                 </h2>
-                <div id="day1" class="accordion-collapse collapse show" data-bs-parent="#tourSchedule">
+                <div id="{{@index}}" class="accordion-collapse collapse {{#if @first}}show{{/if}}" data-bs-parent="#tourSchedule">
                     <div class="accordion-body">
-                        Đón khách tại sân bay, tham quan Hà Nội.
+                        {{this.content}}
                     </div>
                 </div>
             </div>
-           
+            {{/each}}
         </div>
     </section>
 </div>

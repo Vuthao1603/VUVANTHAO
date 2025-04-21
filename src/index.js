@@ -22,12 +22,14 @@ app.engine(
   "hbs",
   handlebars.engine({
     extname: ".hbs",
+    partialsDir: path.join(__dirname, "resources/views/partials"), // Đường dẫn đến partials
     helpers: {
-      sum: (a, b) => a + b, //de su dung trong handlebars store-tours.hbs
-      tours: () => "Danh sách tour!", // Thêm helper tours
+      sum: (a, b) => a + b, // Helper sum
+      tours: () => "Danh sách tour!", // Helper tours
     },
   })
 );
+
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources", "views"));
 

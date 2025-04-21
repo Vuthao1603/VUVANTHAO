@@ -1,5 +1,6 @@
 const Tours = require("../models/Tours");
 const { mongooseToObject } = require("../../util/mongoose");
+const Booking = require("../models/Booking");
 
 class TourController {
   // [GET] /show/:slug
@@ -66,6 +67,54 @@ class TourController {
         console.error("Lỗi tìm kiếm:", error);
         res.status(500).json({ error: "Lỗi server" });
       });
+  }
+
+  // [GET] /tours/:slug/book
+  book(req, res, next) {
+    Tours.findOne({ slug: req.params.slug }) // Tìm tour theo slug
+      .then((tour) => {
+        if (!tour) {
+          return res.status(404).send("Tour not found");
+        }
+        res.render("book-tour", { layout: "about-layout", tour: mongooseToObject(tour) });
+      })
+      .catch(next);
+  }
+
+  // [POST] /tours/:slug/book
+  handleBooking(req, res, next) {
+    // Lấy thông tin tour từ slug
+    Tours.findOne({ slug: req.params.slug })
+      .then((tour) => {
+        if (!tour) {
+          return res.status(404).send("Tour not found");
+        }
+
+        // Tính tổng tiền
+        const totalPrice = parseInt(tour.gia) * parseInt(req.body.soluong || 1);
+
+        // Tạo dữ liệu đặt tour
+        const bookingData = {
+          slug: tour.slug,
+          name: tour.name,
+          customerName: req.body.name,
+          soluong: parseInt(req.body.soluong || 1),
+          email: req.body.email,
+          phone: req.body.phone,
+          address: req.body.address,
+          ngaydi: req.body.departure,
+          note: req.body.note,
+          totalPrice: totalPrice,
+        };
+
+        // Lưu vào cơ sở dữ liệu
+        const booking = new Booking(bookingData);
+        return booking.save();
+      })
+      .then(() => {
+        res.redirect("/"); 
+      })
+      .catch(next);
   }
 }
 

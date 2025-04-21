@@ -1,0 +1,33 @@
+<div class="container py-5">
+  <h1 class="text-center mb-4">Danh sách đặt tour</h1>
+  <div class="table-responsive"> <!-- Thêm lớp để bảng cuộn ngang nếu cần -->
+    <table class="table table-bordered table-hover table-striped text-center align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Tên khách hàng</th>
+          <th>Email</th>
+          <th>Số điện thoại</th>
+          <th>Tên tour</th>
+          <th>Ngày khởi hành</th>
+          <th>Tổng tiền</th>
+          <th>Ghi chú</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each bookings}}
+        <tr>
+          <td>{{@index}}</td>
+          <td>{{this.customerName}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.phone}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.ngaydi}}</td>
+          <td>{{this.totalPrice}} .000.000 VND</td>
+          <td>{{this.note}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

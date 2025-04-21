@@ -1,4 +1,6 @@
 const Tours = require("../models/Tours");
+const Booking = require("../models/Booking");
+const { mongooseToObject } = require("../../util/mongoose");
 const { mutipleMongooseToObject } = require("../../util/mongoose");
 
 class AdminController {
@@ -18,6 +20,17 @@ class AdminController {
     res.render("admin/admin", {
       layout: "admin-layout",
     });
+  }
+
+  // [GET] /admin/bookings
+  listBookings(req, res, next) {
+    Booking.find({})
+      .then((bookings) =>
+        res.render("admin/bookings", {
+          bookings: mutipleMongooseToObject(bookings),
+        }),
+      )
+      .catch((error) => next(error));
   }
 }
 
