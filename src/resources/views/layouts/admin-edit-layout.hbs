@@ -7,8 +7,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/src/resources/views/admin/css/style.css">
+    <style>
+        .app {
+            max-width: 80%; /* Giới hạn chiều rộng */
+            margin: 20px auto; /* Căn giữa nội dung */
+            padding: 20px;
+            background-color: #f9f9f9; /* Màu nền nhẹ */
+            border-radius: 8px; /* Bo góc */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+        }
+    </style>
   </head>
   <div class="app">
+    <!-- Nút quay lại -->
+    <div class="mb-3">
+      <a href="/admin" class="btn btn-secondary">
+        <i class="fa fa-arrow-left"></i> Quay lại
+      </a>
+    </div>
     {{{body}}} 
   </div>
 </body>

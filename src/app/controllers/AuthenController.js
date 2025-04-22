@@ -104,6 +104,30 @@ class AuthenController {
       });
     }
   }
+
+  myprofile(req, res, next) {
+    const { email, password } = req.body;
+  
+    User.findOne({ email, password }) // Kiểm tra thông tin đăng nhập
+      .then((user) => {
+        if (!user) {
+          return res.status(401).send("Email hoặc mật khẩu không đúng");
+        }
+  
+        // Lưu thông tin người dùng vào session
+        req.session.user = {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          address: user.address,
+        };
+  
+        res.redirect("/profile"); // Chuyển hướng đến trang Profile
+      })
+      .catch(next);
+  }
+
 }
 
 module.exports = new AuthenController();

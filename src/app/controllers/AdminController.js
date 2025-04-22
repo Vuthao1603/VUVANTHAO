@@ -10,6 +10,7 @@ class AdminController {
       .then((tours) =>
         res.render("admin/stored-tours", {
           tours: mutipleMongooseToObject(tours),
+          layout: "admin-edit-layout",
         }),
       )
       .catch((error) => next(error));
@@ -22,12 +23,15 @@ class AdminController {
     });
   }
 
+  
+
   // [GET] /admin/bookings
   listBookings(req, res, next) {
     Booking.find({})
       .then((bookings) =>
         res.render("admin/bookings", {
           bookings: mutipleMongooseToObject(bookings),
+          layout: "admin-edit-layout",
         }),
       )
       .catch((error) => next(error));

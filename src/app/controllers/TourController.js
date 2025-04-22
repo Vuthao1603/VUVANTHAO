@@ -26,7 +26,6 @@ class TourController {
 
   //  [POST] /tours/store
   store(req, res, next) {
-    console.log("Dữ liệu từ form:", req.body); // Log dữ liệu từ form
 
     const formData = req.body;
 
@@ -42,11 +41,10 @@ class TourController {
       .save()
       .then(() => {
         console.log("Lưu tour thành công:", tour); // Log khi lưu thành công
-        res.redirect("/");
+        res.redirect("/admin");
       })
       .catch((error) => {
         console.error("Lỗi lưu tour:", error.message); // Log chi tiết lỗi
-        console.error("Chi tiết lỗi:", error); // Log toàn bộ lỗi
         res.status(500).send("Lỗi server");
       });
   }

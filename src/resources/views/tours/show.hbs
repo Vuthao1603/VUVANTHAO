@@ -15,26 +15,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="/" class="nav-item nav-link">Home</a>
-                        <a href="/about" class="nav-item nav-link">About</a>
-                        <a href="/services" class="nav-item nav-link">Services</a>
-                        <a href="/alltour2" class="nav-item nav-link active">Packages</a>
-                        <a href="blog.html" class="nav-item nav-link">Blog</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="destination.html" class="dropdown-item">Destination</a>
-                                <a href="tour.html" class="dropdown-item">Explore Tour</a>
-                                <a href="booking.html" class="dropdown-item">Travel Booking</a>
-                                <a href="gallery.html" class="dropdown-item">Our Gallery</a>
-                                <a href="guides.html" class="dropdown-item">Travel Guides</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="/" class="nav-item nav-link">Trang chủ </a>
+                        <a href="/about" class="nav-item nav-link">Thông tin </a>
+                        <a href="/services" class="nav-item nav-link">Dịch vụ </a>
+                        <a href="/alltour2" class="nav-item nav-link active">Điểm đến </a>
+                        <a href="/blog" class="nav-item nav-link">Bài viết </a>
+                        <a href="/contact" class="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a>
+                    <a href="/alltour2" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Đặt Ngay </a>
                 </div>
             </nav>
         </div>
@@ -81,7 +69,7 @@
                 <i class="fa fa-map-marked-alt fa-2x text-primary me-3"></i>
                 <div>
                     <h6 class="fw-bold mb-1">Điểm tham quan</h6>
-                    <p class="mb-0 text-muted">Dịch Vụ Tham Quan, Vé 4 Giờ Bus 2 Tầng Sài Gòn, Chợ Lớn, Thưởng Thức Ẩm Thực...</p>
+                    <p class="mb-0 text-muted"> {{tour.checkin}} </p>
                 </div>
                 </div>
 
@@ -89,7 +77,7 @@
                 <i class="fa fa-utensils fa-2x text-primary me-3"></i>
                 <div>
                     <h6 class="fw-bold mb-1">Ẩm thực</h6>
-                    <p class="mb-0 text-muted">Thưởng thức các món ăn đặc sản trong tour.</p>
+                    <p class="mb-0 text-muted"> {{tour.amthuc}} </p>
                 </div>
                 </div>
 
@@ -97,7 +85,7 @@
                 <i class="fa fa-user-friends fa-2x text-primary me-3"></i>
                 <div>
                     <h6 class="fw-bold mb-1">Đối tượng thích hợp</h6>
-                    <p class="mb-0 text-muted">Người lớn tuổi, Cặp đôi, Gia đình, Thanh niên, Trẻ em.</p>
+                    <p class="mb-0 text-muted"> {{tour.doituong}} </p>
                 </div>
                 </div>
 
@@ -105,7 +93,7 @@
                 <i class="fa fa-clock fa-2x text-primary me-3"></i>
                 <div>
                     <h6 class="fw-bold mb-1">Thời gian lý tưởng</h6>
-                    <p class="mb-0 text-muted">Quanh năm</p>
+                    <p class="mb-0 text-muted"> {{tour.thoigianlytuong}} </p>
                 </div>
                 </div>
 
@@ -113,7 +101,7 @@
             <i class="fa fa-bus fa-2x text-primary me-3"></i>
             <div>
                 <h6 class="fw-bold mb-1">Phương tiện</h6>
-                <p class="mb-0 text-muted">Xe du lịch</p>
+                <p class="mb-0 text-muted"> {{tour.phuongtien}} </p>
             </div>
             </div>
 
@@ -121,7 +109,7 @@
             <i class="fa fa-tags fa-2x text-primary me-3"></i>
             <div>
                 <h6 class="fw-bold mb-1">Khuyến mãi</h6>
-                <p class="mb-0 text-muted">Đã bao gồm trong giá tour</p>
+                <p class="mb-0 text-muted"> {{tour.khuyenmai}} </p>
             </div>
             </div>
 
@@ -131,15 +119,34 @@
         </div>
 
         <!-- Cột bên phải -->
-        <div class="col-md-4 mt-5">
-            <div class="card shadow-sm p-3">
-                <h4 class="fw-bold text">Thông tin tour</h4>
-                <p><strong>Giá:</strong> {{tour.gia}} VND</p>
-                <p><strong>Mã tour:</strong> {{tour.matour}}</p>
-                <p><strong>Thoi gian</strong>{{tour.date}}</p>           
-                <a href="/tours/{{tour.slug}}/book" class="btn btn-primary w-100 btn-hover">Đặt ngay</a>
+       <div class="col-md-4 mt-5">
+        <div class="card shadow-sm p-3">
+            <h5 class="fw-bold">Giá:</h5>
+            <p class="mb-1 text-decoration-line-through text-muted">Giảm 5%</p>
+            <h3 class="text-danger fw-bold"> {{tour.gia}}.000 ₫ <small class="text-dark">/ Khách</small></h3>
+
+            <div class="bg-danger-subtle text-danger p-2 rounded mb-3">
+            🎁 <strong>Đặt ngay để nhận được Ưu đãi giờ chót tiết kiệm thêm <span class="text-danger">500K</span></strong>
+            </div>
+
+            <p><strong>Mã tour:</strong> <a href="#" class="text-decoration-none text-primary">{{tour.matour}}</a></p>
+            <p><strong>Khởi hành:</strong> <span class="text-dark">{{tour.diemdi}}</span></p>
+            <p><strong>Ngày khởi hành:</strong> <span class="text-dark">{{tour.ngaydi}}</span></p>
+            <p><strong>Thời gian:</strong> <span class="text-dark">{{tour.date}}</span></p>
+            <p><strong>Số vị trí còn:</strong> <span class="text-danger fw-bold">{{tour.slot}}</span></p>
+
+            <div class="d-flex gap-2">
+            <a href="/alltour2" class="btn btn-outline-danger w-50">Các tour khác</a>
+            <a href="/tours/{{tour.slug}}/book" class="btn btn-danger w-50">Đặt ngay</a>
+            </div>
+
+            <div class="mt-3 d-flex gap-2">
+            <button class="btn btn-primary flex-fill"><i class="bi bi-telephone-fill"></i> Gọi miễn phí qua internet</button>
+            <button class="btn btn-outline-primary flex-fill"><i class="bi bi-chat-dots"></i> Liên hệ tư vấn</button>
             </div>
         </div>
+        </div>
+
     </div>
 
 

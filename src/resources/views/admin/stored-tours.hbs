@@ -29,19 +29,19 @@
 </div>
 
 {{!Conform delete modal}}
-<div id="delete-tour-model" class="modal" tabindex="-1">
+<div id="delete-tour-model" class="modal fade" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Xoa tour ?</h5>
+        <h5 class="modal-title">Xóa tour?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Ban chac chan muon xoa tour</p>
+        <p>Bạn chắc chắn muốn xóa tour này?</p>
       </div>
       <div class="modal-footer">
-        <button id="btn-delete-tour" type="button" class="btn btn-danger">Xoa bo</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huy</button>
+        <button id="btn-delete-tour" type="button" class="btn btn-danger">Xóa bỏ</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
       </div>
     </div>
   </div>
@@ -52,29 +52,27 @@
  <form name="delete-tour-form" method="POST"></form>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+  var deleteForm = document.forms["delete-tour-form"];
+  var btnDeleteTour = document.getElementById("btn-delete-tour");
+  var selectedTourId = null;
 
-      var deleteForm = document.forms['delete-tour-form'];
-      var deleteTourModal = document.getElementById('delete-tour-model'); // Lấy modal
-      var btnDeleteTour = document.getElementById('btn-delete-tour'); // Lấy nút xóa
+  // Bắt sự kiện click nút xoá
+  var deleteButtons = document.querySelectorAll('[data-bs-toggle="modal"][data-id]');
+  deleteButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      selectedTourId = this.getAttribute("data-id");
+    });
+  });
 
-      var selectedTourId = null; // Biến toàn cục để lưu id của tour cần xóa
-
-      // Lắng nghe sự kiện khi modal hiển thị
-      deleteTourModal.addEventListener('show.bs.modal', function (event) {
-          var button = event.relatedTarget; // Lấy button mở modal
-          if (button) {
-              selectedTourId = button.getAttribute('data-id'); // Lưu id của tour
-          }
-      });
-
-      // Xử lý khi ấn nút "Xóa bỏ"
-      btnDeleteTour.addEventListener('click', function () {
-          if (selectedTourId) {
-              deleteForm.action = '/tours/' + selectedTourId + '?_method=DELETE';
-              deleteForm.submit();
-          }
-      });
-
-
-
+  // Gửi form khi xác nhận xoá
+  btnDeleteTour.addEventListener("click", function () {
+    if (selectedTourId) {
+      deleteForm.action = "/tours/" + selectedTourId + "?_method=DELETE";
+      deleteForm.submit();
+    }
+  });
+});
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+

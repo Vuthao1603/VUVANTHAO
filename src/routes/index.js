@@ -10,6 +10,8 @@ const servicesRouter = require("./services");
 const blogRouter = require("./blog");
 const contactRouter = require("./contact");
 
+
+
 function routes(app) {
   app.use("/news", newsRouter);
   app.use("/admin", adminRouter);
@@ -21,6 +23,7 @@ function routes(app) {
   app.use("/services", servicesRouter);
   app.use("/blog", blogRouter);
   app.use("/contact", contactRouter);
+
 }
 
 module.exports = routes;

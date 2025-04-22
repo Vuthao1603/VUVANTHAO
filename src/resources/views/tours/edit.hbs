@@ -19,12 +19,21 @@
     
         </div>
 
-         <div class="form-group">
-            <label for="lichtrinh" class="form-label">Lịch trình </label>
-            <textarea type="text" class="form-control" value="{{tour.lichtrinh}}" id="lichtrinh" name="lichtrinh" > </textarea>
-    
+        <div id="lichtrinh-container">
+          {{#each tour.lichtrinh}}
+          <div class="lichtrinh-item">
+            <div class="form-group">
+              <label for="day" class="form-label">Ngày</label>
+              <input type="text" class="form-control" name="lichtrinh[{{@index}}][day]" value="{{this.day}}" placeholder="Nhập ngày (ví dụ: Ngày 1)">
+            </div>
+            <div class="form-group">
+              <label for="content" class="form-label">Nội dung</label>
+              <input type="text" class="form-control" name="lichtrinh[{{@index}}][content]" value="{{this.content}}" placeholder="Nhập nội dung ngày {{@index}}">
+            </div>
+          </div>
+          {{/each}}
         </div>
-
+      
          <div class="form-group">
             <label for="gia" class="form-label">Giá </label>
             <input type="text" class="form-control" value="{{tour.gia}}" id="gia" name="gia" >
@@ -32,6 +41,11 @@
         </div>
    
 
+        <div class="form-group">
+            <label for="slot" class="form-label">Số lượng </label>
+            <input type="text" class="form-control" value="{{tour.slot}}" id="slot" name="slot" >
+        </div>
+       
          <div class="form-group">
             <label for="date" class="form-label">Thời gian </label>
             <input type="text" class="form-control" value="{{tour.date}}" id="date" name="date" >
@@ -44,8 +58,23 @@
     
         </div>
 
+        <div class="form-group">
+            <label for="amthuc" class="form-label">Ẩm thực</label>
+            <input type="text" class="form-control" id="amthuc" name="amthuc" value="{{tour.amthuc}}">
+        </div>
+
+        <div class="form-group">
+            <label for="diemdi" class="form-label">Điểm đi</label>
+            <input type="text" class="form-control" id="diemdi" name="diemdi" value="{{tour.diemdi}}">
+        </div>
+
+        <div class="form-group">
+            <label for="diemden" class="form-label">Điểm đến</label>
+            <input type="text" class="form-control" id="diemden" name="diemden" value="{{tour.diemden}}">
+        </div>
+
         
        
-  <button type="submit" class="btn btn-primary">Luu lai</button>
+  <button type="submit" class="btn btn-primary">Lưu lại </button>
 </form>
 </div>

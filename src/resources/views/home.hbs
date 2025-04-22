@@ -1,24 +1,451 @@
-<h1 class="text-center my-4">DAY LA TRANG CHU</h1>
-<div class="container">
-    <div class="row g-4">
-        {{#each tours}}
-        <div class="col-sm-6 col-lg-4">
-            <div class="card shadow-sm border-0">
-                <a href="/tours/{{this.slug}}" class="d-block overflow-hidden">
-                    <img src="{{this.image}}" class="card-img-top rounded-top img-hover" alt="{{this.name}}">
-                </a>
-                <div class="card-body text-center">
-                    <a href="/tours/{{this.slug}}" class="text-decoration-none text-dark">
-                        <h5 class="card-title fw-bold">{{this.name}}</h5>
-                    </a>
-                    <p class="card-text text-muted">{{this.thongtin}}</p>
-                    <a href="#" class="btn btn-primary w-100 btn-hover">Đăng ký ngay</a>
+
+<div class="container-fluid about py-5">
+            <div class="container py-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-5">
+                        <div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
+                            <img src="img\tour1_18223e8bfeda4874ae50b9ded45953a2_grande.webp" class="img-fluid w-100 h-100" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                        <h5 class="section-about-title pe-3">About Us</h5>
+                        <h1 class="mb-4">Welcome to <span class="text-primary">Travela</span></h1>
+                        <p class="mb-4">Tại Travela, chúng tôi không chỉ tổ chức tour du lịch – chúng tôi tạo nên những hành trình đáng nhớ. Với đam mê khám phá và sứ mệnh kết nối con người với vẻ đẹp của thế giới, Travela mang đến cho bạn những trải nghiệm du lịch an toàn, chất lượng và đầy cảm hứng.</p>
+                        <p class="mb-4">Từ những cung đường trong nước tuyệt đẹp đến các điểm đến quốc tế hấp dẫn, mỗi tour đều được thiết kế kỹ lưỡng để đảm bảo dịch vụ chu đáo, lịch trình hợp lý và cảm xúc trọn vẹn.</p>
+                        <p class="mb-4">Hơn cả một chuyến đi, đó là hành trình khám phá bản thân, văn hóa và những điều mới mẻ. Với đội ngũ tận tâm và dày dạn kinh nghiệm, Travela luôn sẵn sàng đồng hành cùng bạn trên mọi nẻo đường.</p>
+                        <p class="mb-4">Travela – Khám phá thế giới theo cách của bạn.</p>
+                        <div class="row gy-2 gx-4 mb-4">
+                            <div class="col-sm-6">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Chuyến bay hạng nhất</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Khách sạn được lựa chọn cẩn thận</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Phòng 5 sao</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Phương tiện hiện đại nhất</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>150 tour du lịch thành phố cao cấp</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Dịch vụ 24/7</p>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Read More</a>
+                    </div>
                 </div>
             </div>
         </div>
-        {{/each}}
+        <!-- About End -->
+ <!-- Services Start -->
+<div class="container-fluid bg-light service py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Services</h5>
+            <h1 class="mb-0">Our Services</h1>
+        </div>
+        <div class="row g-4">
+            <!-- First Row -->
+            <div class="col-lg-6">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                            <div class="service-content text-end">
+                                <h5 class="mb-4">Chuyến tham quan trên toàn thế giới</h5>
+                                <p class="mb-0">Khám phá những kỳ quan nổi tiếng và nền văn hóa đặc sắc từ Á sang Âu, từ châu Mỹ đến châu Phi – hành trình đưa bạn đến mọi miền thế giới trong một chuyến đi không thể nào quên.</p>
+                            </div>
+                            <div class="service-icon p-4">
+                                <i class="fa fa-globe fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                            <div class="service-content text-end">
+                                <h5 class="mb-4">Đặt phòng khách sạn</h5>
+                                <p class="mb-0">Tìm kiếm và đặt phòng nhanh chóng với nhiều lựa chọn khách sạn chất lượng, giá cả hợp lý, vị trí thuận tiện – giúp bạn yên tâm nghỉ dưỡng suốt chuyến đi.</p>
+                            </div>
+                            <div class="service-icon p-4">
+                                <i class="fa fa-hotel fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                            <div class="service-content text-end">
+                                <h5 class="mb-4">Hướng dẫn du lịch</h5>
+                                <p class="mb-0">Cẩm nang du lịch chi tiết từ A đến Z – từ lịch trình, điểm đến nổi bật đến mẹo hữu ích giúp bạn trải nghiệm hành trình trọn vẹn và an toàn nhất.</p>
+                            </div>
+                            <div class="service-icon p-4">
+                                <i class="fa fa-user fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                            <div class="service-content text-end">
+                                <h5 class="mb-4">Quản lý sự kiện</h5>
+                                <p class="mb-0">Tổ chức sự kiện chuyên nghiệp – từ hội nghị, hội thảo đến team building, chúng tôi mang đến giải pháp trọn gói, sáng tạo và hiệu quả cho mọi nhu cầu của bạn.</p>
+                            </div>
+                            <div class="service-icon p-4">
+                                <i class="fa fa-cog fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row -->
+            <div class="col-lg-6">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                            <div class="service-content text-end">
+                                <h5 class="mb-4">Hỗ trợ thị thực & giấy tờ</h5>
+                                <p class="mb-0">Dịch vụ hỗ trợ xin visa nhanh chóng, tư vấn tận tình và đảm bảo hồ sơ chuẩn xác, giúp bạn dễ dàng đặt chân đến bất kỳ quốc gia nào.</p>
+                            </div>
+                            <div class="service-icon p-4">
+                                <i class="fa fa-passport fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                            <div class="service-content text-end">
+                                <h5 class="mb-4">Chuyến đi theo yêu cầu</h5>
+                                <p class="mb-0">Tùy chỉnh hành trình theo sở thích cá nhân, từ nghỉ dưỡng, khám phá ẩm thực đến du lịch mạo hiểm – bạn lên ý tưởng, chúng tôi hiện thực hóa.</p>
+                            </div>
+                            <div class="service-icon p-4">
+                                <i class="fa fa-map-signs fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                            <div class="service-content text-end">
+                                <h5 class="mb-4">Đưa đón sân bay</h5>
+                                <p class="mb-0">Dịch vụ đưa đón sân bay nhanh chóng, an toàn, đúng giờ – giúp bạn thoải mái bắt đầu và kết thúc hành trình mà không lo lắng về phương tiện.</p>
+                            </div>
+                            <div class="service-icon p-4">
+                                <i class="fa fa-shuttle-van fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
+                            <div class="service-content text-end">
+                                <h5 class="mb-4">Bảo hiểm du lịch</h5>
+                                <p class="mb-0">An tâm mọi hành trình với các gói bảo hiểm du lịch toàn diện – hỗ trợ y tế, hoãn chuyến hay mất hành lý đều được đảm bảo.</p>
+                            </div>
+                            <div class="service-icon p-4">
+                                <i class="fa fa-shield-alt fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Services Button -->
+            <div class="col-12">
+                <div class="text-center">
+                    <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Service More</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<!-- Services End -->
+ 
+
+        <!-- Travel Guide Start -->
+        <div class="container-fluid guide py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Travel Guide</h5>
+                    <h1 class="mb-0">Đội ngũ của chúng tôi </h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="guide-item">
+                            <div class="guide-img">
+                                <div class="guide-img-efects">
+                                    <img src="img\vuthao.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                                </div>
+                                <div class="guide-icon rounded-pill p-2">
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                            <div class="guide-title text-center rounded-bottom p-4">
+                                <div class="guide-title-inner">
+                                    <h4 class="mt-3">Vu Van Thao </h4>
+                                    <p class="mb-0">Designation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="guide-item">
+                            <div class="guide-img">
+                                <div class="guide-img-efects">
+                                    <img src="img\vuthao3.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                                </div>
+                                <div class="guide-icon rounded-pill p-2">
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                            <div class="guide-title text-center rounded-bottom p-4">
+                                <div class="guide-title-inner">
+                                    <h4 class="mt-3">Vu Van Thao</h4>
+                                    <p class="mb-0">Designation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="guide-item">
+                            <div class="guide-img">
+                                <div class="guide-img-efects">
+                                    <img src="img\vuthao2.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                                </div>
+                                <div class="guide-icon rounded-pill p-2">
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                            <div class="guide-title text-center rounded-bottom p-4">
+                                <div class="guide-title-inner">
+                                    <h4 class="mt-3">Vu Van Thao</h4>
+                                    <p class="mb-0">Designation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="guide-item">
+                            <div class="guide-img">
+                                <div class="guide-img-efects">
+                                    <img src="img\vuthao4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                                </div>
+                                <div class="guide-icon rounded-pill p-2">
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                            <div class="guide-title text-center rounded-bottom p-4">
+                                <div class="guide-title-inner">
+                                    <h4 class="mt-3">Vu Van Thao</h4>
+                                    <p class="mb-0">Designation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Travel Guide End -->
+
+<!-- Tour Booking Start -->
+<div class="container-fluid booking py-5 ">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <h5 class="section-booking-title pe-3">Đặt Chuyến Đi</h5>
+                <h1 class="text-white mb-4">Đặt Chuyến Đi Trực Tuyến</h1>
+                <p class="text-white mb-4">Chúng tôi cung cấp dịch vụ đặt chuyến đi du lịch trực tuyến tiện lợi, giúp bạn dễ dàng lên kế hoạch cho chuyến đi của mình. Bạn chỉ cần lựa chọn địa điểm, thời gian và số lượng người, chúng tôi sẽ hỗ trợ bạn với mọi thủ tục cần thiết để có một chuyến đi hoàn hảo.</p>
+                <p class="text-white mb-4">Với các ưu đãi hấp dẫn và dịch vụ chuyên nghiệp, chúng tôi cam kết mang đến cho bạn những trải nghiệm du lịch tuyệt vời nhất. Đặt chuyến đi ngay hôm nay và nhận được những ưu đãi đặc biệt!</p>
+                <a href="#" class="btn btn-light text-primary rounded-pill py-3 px-5 mt-2">Đọc Thêm</a>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="text-white mb-3">Đặt Tour Ưu Đãi</h1>
+                <p class="text-white mb-4">Nhận <span class="text-warning">Giảm Giá 50%</span> Khi Đặt Chuyến Du Lịch Mạo Hiểm Đầu Tiên Với Travela. Nhận Thêm Ưu Đãi Tại Đây.</p>
+                <form>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control bg-white border-0" id="name" placeholder="Tên Của Bạn">
+                                <label for="name">Tên Của Bạn</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control bg-white border-0" id="email" placeholder="Email Của Bạn">
+                                <label for="email">Email Của Bạn</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="text" class="form-control bg-white border-0" id="datetime" placeholder="Ngày & Giờ" data-target="#date3" data-toggle="datetimepicker" />
+                                <label for="datetime">Ngày & Giờ</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select bg-white border-0" id="select1">
+                                    <option value="1">Điểm Đến 1</option>
+                                    <option value="2">Điểm Đến 2</option>
+                                    <option value="3">Điểm Đến 3</option>
+                                </select>
+                                <label for="select1">Điểm Đến</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select bg-white border-0" id="SelectPerson">
+                                    <option value="1">1 Người</option>
+                                    <option value="2">2 Người</option>
+                                    <option value="3">3 Người</option>
+                                </select>
+                                <label for="SelectPerson">Số Lượng Người</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select bg-white border-0" id="CategoriesSelect">
+                                    <option value="1">Trẻ Em</option>
+                                    <option value="2">1</option>
+                                    <option value="3">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                                <label for="CategoriesSelect">Loại Hình</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control bg-white border-0" placeholder="Yêu Cầu Đặc Biệt" id="message" style="height: 100px"></textarea>
+                                <label for="message">Yêu Cầu Đặc Biệt</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary text-white w-100 py-3" type="submit">Đặt Ngay</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tour Booking End -->
+
+<!-- Testimonial Start -->
+<div class="container-fluid testimonial py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Đánh Giá</h5>
+            <h1 class="mb-0">Khách Hàng Nói Gì Về Chúng Tôi!!!</h1>
+        </div>
+        <div class="testimonial-carousel owl-carousel">
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <p class="text-center mb-5">Dịch vụ rất tuyệt vời, tôi đã có một chuyến đi đáng nhớ với Vietravel. Nhân viên nhiệt tình, hướng dẫn viên chuyên nghiệp, mọi thứ đều rất chu đáo.</p>
+                </div>
+                <div class="testimonial-img p-1">
+                    <img src="https://www.w3schools.com/w3images/avatar2.png" class="img-fluid rounded-circle" alt="Image">
+                </div>
+                <div style="margin-top: -35px;">
+                    <h5 class="mb-0">Nguyễn Văn A</h5>
+                    <p class="mb-0">Hà Nội, Việt Nam</p>
+                    <div class="d-flex justify-content-center">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <p class="text-center mb-5">Chuyến đi đến Đà Nẵng với Vietravel thật sự tuyệt vời, tôi và gia đình có nhiều kỷ niệm đáng nhớ. Cảm ơn đội ngũ Vietravel rất nhiều!</p>
+                </div>
+                <div class="testimonial-img p-1">
+                    <img src="https://www.w3schools.com/w3images/avatar3.png" class="img-fluid rounded-circle" alt="Image">
+                </div>
+                <div style="margin-top: -35px;">
+                    <h5 class="mb-0">Trần Thị B</h5>
+                    <p class="mb-0">TP. Hồ Chí Minh, Việt Nam</p>
+                    <div class="d-flex justify-content-center">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <p class="text-center mb-5">Dịch vụ tuyệt vời từ Vietravel! Họ đã giúp tôi lên kế hoạch cho chuyến du lịch đầy ấn tượng. Tôi rất hài lòng với trải nghiệm này.</p>
+                </div>
+                <div class="testimonial-img p-1">
+                    <img src="https://www.w3schools.com/w3images/avatar1.png" class="img-fluid rounded-circle" alt="Image">
+                </div>
+                <div style="margin-top: -35px;">
+                    <h5 class="mb-0">Lê Minh C</h5>
+                    <p class="mb-0">Đà Nẵng, Việt Nam</p>
+                    <div class="d-flex justify-content-center">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <p class="text-center mb-5">Mọi thứ từ việc đặt tour đến những trải nghiệm trong chuyến đi đều tuyệt vời. Mình sẽ tiếp tục sử dụng dịch vụ của Vietravel trong tương lai!</p>
+                </div>
+                <div class="testimonial-img p-1">
+                    <img src="https://www.w3schools.com/w3images/avatar2.png" class="img-fluid rounded-circle" alt="Image">
+                </div>
+                <div style="margin-top: -35px;">
+                    <h5 class="mb-0">Phạm Thị D</h5>
+                    <p class="mb-0">Hải Phòng, Việt Nam</p>
+                    <div class="d-flex justify-content-center">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+
+
+
+    <!-- Subscribe Start -->
+        <div class="container-fluid subscribe py-5 mt-5">
+            <div class="container text-center py-5">
+                <div class="mx-auto text-center" style="max-width: 900px;">
+                    <h5 class="subscribe-title px-3">Subscribe</h5>
+                    <h1 class="text-white mb-4">Our Newsletter</h1>
+                    <p class="text-white mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti eum cum repellat a laborum quasi.
+                    </p>
+                    <div class="position-relative mx-auto">
+                        <input class="form-control border-primary rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 px-4 mt-2 me-2">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Subscribe End -->
 
   <!-- Back to Top -->
-        <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
+        <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
