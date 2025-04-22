@@ -1,52 +1,128 @@
-<div class="mt-4">
+<body>
+    <div class=" mt-4">
     <h3>Đăng tour du lịch</h3>
-    <form method="POST" action="/tours/store">
+    <form method="POST" action="/tours/store" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name" class="form-label">Tên tour</label>
             <input type="text" class="form-control" id="name" name="name" >
-    
-        </div>
-
-         <div class="form-group">
-            <label for="matour" class="form-label">Mã tour </label>
-            <input type="text" class="form-control" id="matour" name="matour" >
-    
         </div>
 
         <div class="form-group">
-            <label for="thongtin" class="form-label">Thông tin </label>
-            <textarea type="text" class="form-control" id="thongtin" name="thongtin" > </textarea>
-    
+            <label for="matour" class="form-label">Mã tour</label>
+            <input type="text" class="form-control" id="matour" name="matour" >
         </div>
 
-         <div class="form-group">
-            <label for="lichtrinh" class="form-label">Lịch trình </label>
-            <textarea type="text" class="form-control" id="lichtrinh" name="lichtrinh" > </textarea>
-    
+        <div class="form-group">
+            <label for="thongtin" class="form-label">Thông tin</label>
+            <textarea class="form-control" id="thongtin" name="thongtin"></textarea>
         </div>
 
-         <div class="form-group">
-            <label for="gia" class="form-label">Giá </label>
-            <input type="text" class="form-control" id="gia" name="gia" >
-    
+        <div id="lichtrinh-container">
+            <div class="lichtrinh-item">
+                <div class="form-group">
+                    <label for="day" class="form-label">Ngày</label>
+                    <input type="text" class="form-control" name="lichtrinh[0][day]" placeholder="Nhập ngày (ví dụ: Ngày 1)">
+                </div>
+                <div class="form-group">
+                    <label for="content" class="form-label">Nội dung</label>
+                    <input type="text" class="form-control" name="lichtrinh[0][content]" placeholder="Nhập nội dung ngày 1">
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-secondary" id="add-lichtrinh">Thêm ngày</button>
+
+        <div class="form-group">
+            <label for="gia" class="form-label">Giá</label>
+            <input type="text" class="form-control" id="gia" name="gia">
         </div>
 
-        
-
-         <div class="form-group">
-            <label for="date" class="form-label">Thời gian </label>
-            <input type="text" class="form-control" id="date" name="date" >
-    
+        <div class="form-group">
+            <label for="gia" class="form-label">Số lượng</label>
+            <input type="text" class="form-control" id="slot" name="slot" required>
         </div>
 
-         <div class="form-group">
-            <label for="videoid" class="form-label">Video ID </label>
-            <input type="text" class="form-control" id="videoid" name="videoid" >
-    
+        <div class="form-group">
+            <label for="date" class="form-label">Thời gian</label>
+            <input type="text" class="form-control" id="dated" name="date">
         </div>
 
-        
-       
-  <button type="submit" class="btn btn-primary">Thêm tour du lịch</button>
-</form>
+        <div class="form-group">
+            <label for="videoid" class="form-label">Video ID</label>
+            <input type="text" class="form-control" id="videoid" name="videoid">
+        </div>
+
+        <div class="form-group">
+            <label for="checkin" class="form-label">Check-in</label>
+            <input type="text" class="form-control" id="checkin" name="checkin">
+        </div>
+
+        <div class="form-group">
+            <label for="ngaydi" class="form-label">Ngày đi</label>
+            <input type="date" class="form-control" id="ngaydi" name="ngaydi">
+        </div>
+
+        <div class="form-group">
+            <label for="ngayve" class="form-label">Ngày về</label>
+            <input type="date" class="form-control" id="ngayve" name="ngayve">
+        </div>
+
+        <div class="form-group">
+            <label for="phuongtien" class="form-label">Phương tiện</label>
+            <input type="text" class="form-control" id="phuongtien" name="phuongtien">
+        </div>
+
+        <div class="form-group">
+            <label for="thoigianlytuong" class="form-label">Thời gian lý tưởng</label>
+            <input type="text" class="form-control" id="thoigianlytuong" name="thoigianlytuong">
+        </div>
+
+        <div class="form-group">
+            <label for="khuyenmai" class="form-label">Khuyến mãi</label>
+            <input type="text" class="form-control" id="khuyenmai" name="khuyenmai">
+        </div>
+
+        <div class="form-group">
+            <label for="doituong" class="form-label">Đối tượng</label>
+            <input type="text" class="form-control" id="doituong" name="doituong">
+        </div>
+
+        <div class="form-group">
+            <label for="amthuc" class="form-label">Ẩm thực</label>
+            <input type="text" class="form-control" id="amthuc" name="amthuc">
+        </div>
+
+        <div class="form-group">
+            <label for="diemdi" class="form-label">Điểm đi</label>
+            <input type="text" class="form-control" id="diemdi" name="diemdi">
+        </div>
+
+        <div class="form-group">
+            <label for="diemden" class="form-label">Điểm đến</label>
+            <input type="text" class="form-control" id="diemden" name="diemden">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    </form>
 </div>
+
+</body>
+<script>
+  let lichtrinhIndex = 1; // Bắt đầu từ ngày thứ 
+  document.getElementById("add-lichtrinh").addEventListener("click", function () {
+    const container = document.getElementById("lichtrinh-container");
+    const item = document.createElement("div");
+    item.classList.add("lichtrinh-item");
+    item.innerHTML = `
+      <div class="form-group">
+        <label for="day" class="form-label">Ngày</label>
+        <input type="text" class="form-control" name="lichtrinh[${lichtrinhIndex}][day]" placeholder="Nhập ngày (ví dụ: Ngày ${lichtrinhIndex + 1})">
+      </div>
+      <div class="form-group">
+        <label for="content" class="form-label">Nội dung</label>
+        <input type="text" class="form-control" name="lichtrinh[${lichtrinhIndex}][content]" placeholder="Nhập nội dung ngày ${lichtrinhIndex + 1}">
+      </div>
+    `;
+    container.appendChild(item);
+    lichtrinhIndex++;
+  });
+</script>

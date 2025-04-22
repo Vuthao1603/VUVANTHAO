@@ -17,26 +17,47 @@ class TourController {
 
   // [GET] /tours/create
   create(req, res, next) {
-    res.render("tours/create");
+    res.render("tours/create"
+      , {
+        layout: "admin-edit-layout",
+      }
+    );
   }
 
   //  [POST] /tours/store
   store(req, res, next) {
-    // res.json(req.body);
-    const FormData = req.body;
-    FormData.image = `https://img.youtube.com/vi/${req.body.videoid}/sddefault.jpg`;
-    const tour = new Tours(FormData);
+    console.log("Dữ liệu từ form:", req.body); // Log dữ liệu từ form
+
+    const formData = req.body;
+
+    // Xử lý lịch trình nếu có
+    if (formData.lichtrinh) {
+      formData.lichtrinh = Object.values(formData.lichtrinh).filter(
+        (item) => item.day || item.content // Loại bỏ các mục trống
+      );
+    }
+
+    const tour = new Tours(formData);
     tour
       .save()
-      .then(() => res.redirect("/"))
-      .catch((error) => {});
+      .then(() => {
+        console.log("Lưu tour thành công:", tour); // Log khi lưu thành công
+        res.redirect("/");
+      })
+      .catch((error) => {
+        console.error("Lỗi lưu tour:", error.message); // Log chi tiết lỗi
+        console.error("Chi tiết lỗi:", error); // Log toàn bộ lỗi
+        res.status(500).send("Lỗi server");
+      });
   }
 
   // [GET] /tours/:id/edit
   edit(req, res, next) {
     Tours.findById(req.params.id)
       .then(
-        (tour) => res.render("tours/edit", { tour: mongooseToObject(tour) }), //fodel tours file edit.hbs
+        (tour) => res.render("tours/edit", { tour: mongooseToObject(tour),
+          layout: "admin-edit-layout",
+         }), //fodel tours file edit.hbs
       )
       .catch(next);
   }
@@ -50,9 +71,17 @@ class TourController {
 
   // [DELETE] /tours/:id
   destroy(req, res, next) {
+    console.log("Xóa tour với ID:", req.params.id); // Log ID của tour cần xóa
+
     Tours.deleteOne({ _id: req.params.id })
-      .then(() => res.redirect("back"))
-      .catch(next);
+      .then(() => {
+        console.log("Xóa thành công");
+        res.redirect("back");
+      })
+      .catch((error) => {
+        console.error("Lỗi khi xóa:", error);
+        next(error);
+      });
   }
 
   // [GET] /api/tours/search
@@ -113,6 +142,23 @@ class TourController {
       })
       .then(() => {
         res.redirect("/"); 
+      })
+      .catch(next);
+  }
+
+  // [GET] /
+  index(req, res, next) {
+    Tours.find({})
+      .then((tours) => {
+        // Thêm URL hình ảnh từ videoid
+        tours = tours.map((tour) => {
+          tour = tour.toObject();
+          if (tour.videoid) {
+            tour.image = `https://img.youtube.com/vi/${tour.videoid}/sddefault.jpg`;
+          }
+          return tour;
+        });
+        res.render("home", { tours });
       })
       .catch(next);
   }
