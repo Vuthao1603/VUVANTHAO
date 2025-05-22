@@ -7,7 +7,7 @@
     
         </div>
 
-         <div class="form-group">
+        <div class="form-group">
             <label for="matour" class="form-label">Mã tour </label>
             <input type="text" class="form-control" value="{{tour.matour}}" id="matour" name="matour" >
     
@@ -19,34 +19,42 @@
     
         </div>
 
-        <div id="lichtrinh-container">
-          {{#each tour.lichtrinh}}
-          <div class="lichtrinh-item">
-            <div class="form-group">
-              <label for="day" class="form-label">Ngày</label>
-              <input type="text" class="form-control" name="lichtrinh[{{@index}}][day]" value="{{this.day}}" placeholder="Nhập ngày (ví dụ: Ngày 1)">
+            <div id="lichtrinh-container">
+            {{#each tour.lichtrinh}}
+            <div class="lichtrinh-item">
+                <div class="form-group">
+                <label for="day" class="form-label">Ngày</label>
+                <input type="text" class="form-control" name="lichtrinh[{{@index}}][day]" value="{{this.day}}" placeholder="Nhập ngày (ví dụ: Ngày 1)">
+                </div>
+                <div class="form-group">
+                <label for="content" class="form-label">Nội dung</label>
+                <input type="text" class="form-control" name="lichtrinh[{{@index}}][content]" value="{{this.content}}" placeholder="Nhập nội dung ngày {{@index}}">
+                </div>
             </div>
-            <div class="form-group">
-              <label for="content" class="form-label">Nội dung</label>
-              <input type="text" class="form-control" name="lichtrinh[{{@index}}][content]" value="{{this.content}}" placeholder="Nhập nội dung ngày {{@index}}">
+            {{/each}}
             </div>
-          </div>
-          {{/each}}
-        </div>
-      
-         <div class="form-group">
+    
+        <div class="form-group">
             <label for="gia" class="form-label">Giá </label>
             <input type="text" class="form-control" value="{{tour.gia}}" id="gia" name="gia" >
     
         </div>
-   
+
+        <div class="form-group">
+            <label for="giatreem" class="form-label">Giá trẻ em </label>
+            <input type="text" class="form-control" value="{{tour.giatreem}}" id="giatreem" name="giatreem" >
+        </div>
+        <div class="form-group">
+            <label for="giaembe" class="form-label">Giá em bé </label>
+            <input type="text" class="form-control" value="{{tour.giaembe}}" id="giaembe" name="giaembe" >
+        </div>
 
         <div class="form-group">
             <label for="slot" class="form-label">Số lượng </label>
             <input type="text" class="form-control" value="{{tour.slot}}" id="slot" name="slot" >
         </div>
-       
-         <div class="form-group">
+
+        <div class="form-group">
             <label for="date" class="form-label">Thời gian </label>
             <input type="text" class="form-control" value="{{tour.date}}" id="date" name="date" >
     

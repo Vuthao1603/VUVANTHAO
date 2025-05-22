@@ -14,6 +14,8 @@ const Tours = new Schema(
       }
     ],
     gia: { type: String },
+    giatreem: { type: String },
+    giaembe: { type: String },
     matour: { type: String,  required: true },
     image: { type: String },
     slug: { type: String, slug: "name", unique: true },

@@ -1,3 +1,70 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chọn số lượng khách</title>
+  <style>
+    .passenger-box {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      margin-right: 15px;
+      display: inline-block;
+      width: 300px;
+      vertical-align: top;
+    }
+
+    .passenger-box.active {
+      border-color: #000;
+    }
+
+    .title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .counter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .counter button {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+    }
+
+    .counter span {
+      font-size: 18px;
+      width: 30px;
+      text-align: center;
+    }
+
+    .passenger-box.disabled {
+      color: #aaa;
+      border-color: #ddd;
+    }
+
+    .passenger-box.disabled .counter button {
+      color: #aaa;
+      border-color: #ddd;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+
 <div class="container py-5">
   <h1 class="text-center mb-4">Đặt Tour</h1>
   <div class="row">
@@ -26,10 +93,42 @@
           <input type="text" class="form-control" id="address" name="address">
         </div>
 
-        <div class="mb-3">
-          <label for="soluong" class="form-label">Số lượng hành khách *</label>
-          <input type="number" class="form-control" id="soluong" name="soluong" min="1" value="1" required>
+
+      <h4 class="mb-3">Hành khách </h4>
+      
+        <div class="passenger-box active" id="adult-box" >
+          <div class="title">Người lớn</div>
+          <div class="subtitle">Từ 12 tuổi trở lên</div>
+          <span id="gia-nguoilon" hidden>{{tour.gia}}</span>
+          <div class="counter">
+            <button onclick="decrease('adult')">-</button>
+            <span id="adult-count">1</span>
+            <button onclick="increase('adult')">+</button>
+          </div>
         </div>
+
+        <div class="passenger-box" id="child-box">
+          <div class="title">Trẻ em</div>
+          <div class="subtitle">Từ 2 - 11 tuổi</div>
+          <span id="gia-treem" hidden>{{tour.giatreem}}</span>
+          <div class="counter">
+            <button onclick="decrease('child')">-</button>
+            <span id="child-count">0</span>
+            <button onclick="increase('child')">+</button>
+          </div>
+        </div>
+
+        <div class="passenger-box" id="baby-box">
+          <div class="title">Em bé</div>
+          <div class="subtitle">Dưới 2 tuổi</div>
+          <span id="gia-embe" hidden>{{tour.giaembe}}</span>
+          <div class="counter">
+            <button onclick="decrease('baby')">-</button>
+            <span id="baby-count">0</span>
+            <button onclick="increase('baby')">+</button>
+          </div>
+        </div>
+
 
         <div class="mb-3">
           <label for="departure" class="form-label">Ngày khởi hành *</label>
@@ -54,7 +153,7 @@
             </label>
           </div>
         </div>
-
+        <input type="hidden" name="totalPrice" id="input-totalPrice">
         <button type="submit" class="btn btn-primary w-100 mt-3">Xác nhận đặt tour</button>
       </form>
     </div>
@@ -63,13 +162,19 @@
     <div class="col-lg-6">
       <h4 class="mb-3">Thông tin chuyến đi</h4>
       <div class="card mb-3">
-        <img src="{{tour.videoid}}" class="card-img-top" alt="{{tour.name}}">
+      <iframe width="100%" height="315"
+        src="https://www.youtube.com/embed/{{tour.videoid}}"
+        title="{{tour.name}}" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+
+
         <div class="card-body">
           <h5 class="card-title">{{tour.name}}</h5>
           <p class="card-text">{{tour.thongtin}}</p>
           <ul class="list-unstyled">
-            <li><strong>Ngày đi:</strong> {{ngaydi}} - {{ngaydi}}</li>
-            <li><strong>Ngày về:</strong> {{ngayve}} - {{ngayve}}</li>
+            <li><strong>Ngày đi:</strong> {{tour.ngaydi}}</li>
+            <li><strong>Ngày về:</strong> {{tour.ngayve}}</li>
             <li><strong>Điểm đi:</strong> {{tour.diemdi}} </li>
             <li><strong>Điểm đến:</strong> {{tour.diemden}} </li>
           </ul>
@@ -80,9 +185,21 @@
       <div class="border p-3 rounded shadow-sm">
         <h5>Khách hàng + Phụ thu</h5>
         <div class="d-flex justify-content-between">
-          <span>Người lớn</span>
-          <span>{{soluong}} x {{tour.gia}}.000đ</span>
-        </div>
+        <span>Người lớn</span>
+        <span id="gia-nguoilon-hienthi">1 x {{ tour.gia }}đ</span>
+      </div>
+      <div class="d-flex justify-content-between">
+        <span>Trẻ em</span>
+
+        <span id="gia-treem-hienthi">0 x {{ tour.giatreem }}</span>
+      </div>
+      <div class="d-flex justify-content-between">
+        <span>Em bé</span>
+        
+        <span id="gia-embe-hienthi">0 x {{ tour.giaembe }}</span>
+      </div>
+
+
         <div class="d-flex justify-content-between">
           <span>Phụ thu phòng đơn</span>
           <span>0đ</span>
@@ -90,9 +207,67 @@
         <hr>
         <div class="d-flex justify-content-between text-danger fw-bold fs-5">
           <span>Tổng tiền</span>
-          <span>{{ tour.gia}}.000đ</span>
+          <span id="tong-tien">{{ tour.totalPrice}}</span>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  const counts = {
+    adult: 1,
+    child: 0,
+    baby: 0
+  };
+
+
+    const giaNguoiLon = parseInt(document.getElementById('gia-nguoilon').innerText.replace(/\D/g, ''));
+    const giaTreEm = parseInt(document.getElementById('gia-treem').innerText.replace(/\D/g, ''));
+    const giaEmBe = parseInt(document.getElementById('gia-embe').innerText.replace(/\D/g, ''));
+
+
+  function updateDisplay(type) {
+    document.getElementById(`${type}-count`).innerText = counts[type];
+    updateTongTien();
+  }
+
+  function increase(type) {
+    counts[type]++;
+    updateDisplay(type);
+  }
+
+  function decrease(type) {
+    if (counts[type] > (type === 'adult' ? 1 : 0)) {
+      counts[type]--;
+      updateDisplay(type);
+    }
+  }
+
+  function formatCurrency(number) {
+    return number.toLocaleString('vi-VN') + 'đ';
+  }
+
+  function updateTongTien() {
+    const total =
+      counts.adult * giaNguoiLon +
+      counts.child * giaTreEm +
+      counts.baby * giaEmBe;
+
+    // Cập nhật tổng tiền
+    document.getElementById('tong-tien').innerText = formatCurrency(total);
+
+    // Cập nhật dòng chi tiết
+    document.getElementById('gia-nguoilon-hienthi').innerText =
+      `${counts.adult} x ${giaNguoiLon.toLocaleString('vi-VN')}đ`;
+    document.getElementById('gia-treem-hienthi').innerText =
+      `${counts.child} x ${giaTreEm.toLocaleString('vi-VN')}đ`;
+    document.getElementById('gia-embe-hienthi').innerText =
+      `${counts.baby} x ${giaEmBe.toLocaleString('vi-VN')}đ`;
+        // Gán vào input hidden để gửi về server
+    document.getElementById('input-totalPrice').value = total;
+  }
+
+  // Gọi lần đầu khi trang load
+  updateTongTien();
+</script>
