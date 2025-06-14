@@ -6,9 +6,11 @@ const handlebars = require("express-handlebars");
 const session = require("express-session");
 const app = express();
 const port = 3000;
+const hbs = handlebars.create();
 
 const route = require("./routes");
 const db = require("./config/db");
+const { index } = require("./app/controllers/NewsController");
 
 //connect to db
 db.connect();
@@ -26,11 +28,20 @@ app.engine(
     helpers: {
       sum: (a, b) => a + b, // Helper sum
       tours: () => "Danh sách tour!", // Helper tours
+      addOne: (index) => index + 1,
+      formatDate: (date) => {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(date).toLocaleDateString("vi-VN", options);
+      },
+      formatPrice: (price) => {
+        return new Intl.NumberFormat("vi-VN", {
+          style: "currency",
+          currency: "VND",
+        }).format(price);
+      },
     },
-  })
+  }),
 );
-
-
 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources", "views"));
@@ -38,7 +49,6 @@ app.set("views", path.join(__dirname, "resources", "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 //bao mat middlewaremiddleware//
 app.use(
@@ -57,5 +67,5 @@ app.use(methodOverride("_method"));
 route(app);
 
 app.listen(port, () =>
-  console.log(`Server is running on port at http://localhost:${port}`)
+  console.log(`Server is running on port at http://localhost:${port}`),
 );

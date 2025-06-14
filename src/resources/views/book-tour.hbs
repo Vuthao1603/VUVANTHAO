@@ -99,7 +99,7 @@
         <div class="passenger-box active" id="adult-box" >
           <div class="title">Người lớn</div>
           <div class="subtitle">Từ 12 tuổi trở lên</div>
-          <span id="gia-nguoilon" hidden>{{tour.gia}}</span>
+          <input type="hidden" id="gia-nguoilon" value="{{tour.gia}}">
           <div class="counter">
             <button onclick="decrease('adult')">-</button>
             <span id="adult-count">1</span>
@@ -110,7 +110,7 @@
         <div class="passenger-box" id="child-box">
           <div class="title">Trẻ em</div>
           <div class="subtitle">Từ 2 - 11 tuổi</div>
-          <span id="gia-treem" hidden>{{tour.giatreem}}</span>
+          <input type="hidden" id="gia-treem" value="{{tour.giatreem}}">
           <div class="counter">
             <button onclick="decrease('child')">-</button>
             <span id="child-count">0</span>
@@ -121,7 +121,7 @@
         <div class="passenger-box" id="baby-box">
           <div class="title">Em bé</div>
           <div class="subtitle">Dưới 2 tuổi</div>
-          <span id="gia-embe" hidden>{{tour.giaembe}}</span>
+          <input type="hidden" id="gia-embe" value="{{tour.giaembe}}">
           <div class="counter">
             <button onclick="decrease('baby')">-</button>
             <span id="baby-count">0</span>
@@ -132,7 +132,7 @@
 
         <div class="mb-3">
           <label for="departure" class="form-label">Ngày khởi hành *</label>
-          <input type="date" class="form-control" id="departure" name="departure" value="{{tour.ngaydi}}" required>
+          <input type="date" class="form-control" id="departure" name="departure" value="{{ tour.ngaydi}}" required>
         </div>
 
         <div class="mb-3">
@@ -155,6 +155,11 @@
         </div>
         <input type="hidden" name="totalPrice" id="input-totalPrice">
         <button type="submit" class="btn btn-primary w-100 mt-3">Xác nhận đặt tour</button>
+        
+        <!-- Đặt bên trong <form> -->
+        <input type="hidden" id="soLuongNguoiLon" name="soLuongNguoiLon" value="1">
+        <input type="hidden" id="soLuongTreEm" name="soLuongTreEm" value="0">
+        <input type="hidden" id="soLuongEmBe" name="soLuongEmBe" value="0">
       </form>
     </div>
 
@@ -173,8 +178,8 @@
           <h5 class="card-title">{{tour.name}}</h5>
           <p class="card-text">{{tour.thongtin}}</p>
           <ul class="list-unstyled">
-            <li><strong>Ngày đi:</strong> {{tour.ngaydi}}</li>
-            <li><strong>Ngày về:</strong> {{tour.ngayve}}</li>
+            <li><strong>Ngày đi:</strong> {{formatDate tour.ngaydi}}</li>
+            <li><strong>Ngày về:</strong> {{formatDate tour.ngayve}}</li>
             <li><strong>Điểm đi:</strong> {{tour.diemdi}} </li>
             <li><strong>Điểm đến:</strong> {{tour.diemden}} </li>
           </ul>
@@ -207,12 +212,15 @@
         <hr>
         <div class="d-flex justify-content-between text-danger fw-bold fs-5">
           <span>Tổng tiền</span>
-          <span id="tong-tien">{{ tour.totalPrice}}</span>
+          <span id="tong-tien">{{formatPrice tour.totalPrice}}</span>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
 
 <script>
   const counts = {
@@ -222,13 +230,18 @@
   };
 
 
-    const giaNguoiLon = parseInt(document.getElementById('gia-nguoilon').innerText.replace(/\D/g, ''));
-    const giaTreEm = parseInt(document.getElementById('gia-treem').innerText.replace(/\D/g, ''));
-    const giaEmBe = parseInt(document.getElementById('gia-embe').innerText.replace(/\D/g, ''));
+  
+    const giaNguoiLon = parseInt(document.getElementById('gia-nguoilon').value) || 0;
+    const giaTreEm = parseInt(document.getElementById('gia-treem').value) || 0;
+    const giaEmBe = parseInt(document.getElementById('gia-embe').value) || 0;
 
 
   function updateDisplay(type) {
     document.getElementById(`${type}-count`).innerText = counts[type];
+    // Cập nhật input ẩn
+    if (type === 'adult') document.getElementById('soLuongNguoiLon').value = counts.adult;
+    if (type === 'child') document.getElementById('soLuongTreEm').value = counts.child;
+    if (type === 'baby') document.getElementById('soLuongEmBe').value = counts.baby;
     updateTongTien();
   }
 

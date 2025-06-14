@@ -1,4 +1,18 @@
-<!-- Carousel Start -->
+<style>
+  #search-dropdown .search-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  #search-dropdown .search-item:hover {
+    background-color: #f1f1f1;
+  }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<body>
+  <!-- Carousel Start -->
             <div class="carousel-header">
                 <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
                     <ol class="carousel-indicators">
@@ -61,68 +75,85 @@
             </div>
             <!-- Carousel End -->
         </div>
-        <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
-            <div class="container">
-                <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
-                    <form action="/api/search" method="GET" class="d-flex">
-                        <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" name="q" placeholder="Eg: Thailand" required>
-                        <button type="submit" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2" style="top: 50%; right: 46px; transform: translateY(-50%);">Search</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+
+        <!--Search Bar Start -->
+<div class="container-fluid search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
+  <div class="container">
+    <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
+      <div class="position-relative w-100">
+        <input
+          class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5"
+          type="text"
+          id="search-tour"
+          placeholder="Tìm kiếm tour..."
+          autocomplete="off"
+        />
+        <button
+          type="button"
+          class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
+          style="top: 50%; right: 46px; transform: translateY(-50%);"
+        >
+          Search
+        </button>
+
+        <!-- Khối gợi ý kết quả -->
+        <div
+          id="search-dropdown"
+          class="bg-white shadow rounded mt-1 position-absolute w-100"
+          style="top: 100%; left: 0; display: none; z-index: 9999;"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
 
         <!-- Navbar & Hero End -->
 
+</body>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("searchInput");
-    const searchResults = document.getElementById("searchResults");
+    $(document).ready(function () {
+    const $searchInput = $('#search-tour');
+    const $dropdown = $('#search-dropdown');
 
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.trim();
+    $searchInput.on('input', function () {
+        const keyword = $(this).val().trim();
 
-      if (query.length > 0) {
-        fetch(`/api/tours/search?q=${query}`)
-          .then((response) => response.json())
-          .then((tours) => {
-            // Xóa kết quả cũ
-            searchResults.innerHTML = "";
+        if (keyword.length === 0) {
+        $dropdown.hide();
+        return;
+        }
 
-            if (tours.length > 0) {
-              // Hiển thị kết quả mới
-              tours.forEach((tour) => {
-                const tourCard = `
-                  <div class="col-sm-6 col-lg-4">
-                    <div class="card shadow-sm">
-                      <img src="${tour.image}" class="card-img-top" alt="${tour.name}">
-                      <div class="card-body">
-                        <h5>${tour.name}</h5>
-                        <p class="text-muted">${tour.thongtin}</p>
-                        <a href="/tours/${tour.slug}" class="btn btn-primary w-100">Chi tiết</a>
-                      </div>
-                    </div>
-                  </div>
-                `;
-                searchResults.innerHTML += tourCard;
-              });
-            } else {
-              searchResults.innerHTML = `<p class="text-center text-muted">Không tìm thấy kết quả phù hợp.</p>`;
-            }
-          })
-          .catch((error) => {
-            console.error("Lỗi tìm kiếm:", error);
-          });
-      } else {
-        // Xóa kết quả nếu không có từ khóa
-        searchResults.innerHTML = "";
-      }
+        $.get('/tours/api/search?q=' + encodeURIComponent(keyword), function (data) {
+        if (data.length === 0) {
+            $dropdown.html('<div class="search-item text-muted">Không tìm thấy tour</div>').show();
+            return;
+        }
+
+        let html = '';
+        data.forEach(function (tour) {
+            html += `
+            <div class="search-item" onclick="location.href='/tours/${tour.slug}'">
+                <div class="d-flex align-items-center">
+                <img src="https://img.youtube.com/vi/${tour.videoid}/default.jpg" width="60" height="40" class="me-2 rounded">
+                <div>
+                    <strong>${tour.name}</strong><br>
+                    <small class="text-muted">${tour.thongtin?.slice(0, 50) || ''}</small>
+                </div>
+                </div>
+            </div>
+            `;
+        });
+
+        $dropdown.html(html).show();
+        });
     });
-  });
+
+    // Click ngoài vùng tìm kiếm sẽ ẩn dropdown
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.position-relative').length) {
+        $dropdown.hide();
+        }
+    });
+    });
 </script>
-
-
-
-
-

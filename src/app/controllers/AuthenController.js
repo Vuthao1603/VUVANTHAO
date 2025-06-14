@@ -86,7 +86,7 @@ class AuthenController {
 
       // Lưu thông tin người dùng vào session
       req.session.user = {
-        id: user._id,
+        _id: user._id,
         username: user.username,
         role: user.role,
       };
@@ -107,13 +107,13 @@ class AuthenController {
 
   myprofile(req, res, next) {
     const { email, password } = req.body;
-  
+
     User.findOne({ email, password }) // Kiểm tra thông tin đăng nhập
       .then((user) => {
         if (!user) {
           return res.status(401).send("Email hoặc mật khẩu không đúng");
         }
-  
+
         // Lưu thông tin người dùng vào session
         req.session.user = {
           id: user._id,
@@ -122,12 +122,11 @@ class AuthenController {
           phone: user.phone,
           address: user.address,
         };
-  
+
         res.redirect("/profile"); // Chuyển hướng đến trang Profile
       })
       .catch(next);
   }
-
 }
 
 module.exports = new AuthenController();

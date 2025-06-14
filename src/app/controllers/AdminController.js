@@ -23,8 +23,6 @@ class AdminController {
     });
   }
 
-  
-
   // [GET] /admin/bookings
   listBookings(req, res, next) {
     Booking.find({})

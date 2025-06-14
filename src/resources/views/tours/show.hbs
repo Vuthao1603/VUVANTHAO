@@ -123,7 +123,7 @@
         <div class="card shadow-sm p-3">
             <h5 class="fw-bold">Giá:</h5>
             <p class="mb-1 text-decoration-line-through text-muted">Giảm 5%</p>
-            <h3 class="text-danger fw-bold"> {{tour.gia}}.000₫ <small class="text-dark">/ Khách</small></h3>
+            <h3 class="text-danger fw-bold"> {{formatPrice tour.gia}} <small class="text-dark">/ Khách</small></h3>
 
             <div class="bg-danger-subtle text-danger p-2 rounded mb-3">
             🎁 <strong>Đặt ngay để nhận được Ưu đãi giờ chót tiết kiệm thêm <span class="text-danger">500K</span></strong>
@@ -131,7 +131,7 @@
 
             <p><strong>Mã tour:</strong> <a href="#" class="text-decoration-none text-primary">{{tour.matour}}</a></p>
             <p><strong>Khởi hành:</strong> <span class="text-dark">{{tour.diemdi}}</span></p>
-            <p><strong>Ngày khởi hành:</strong> <span class="text-dark">{{tour.ngaydi}}</span></p>
+            <p><strong>Ngày khởi hành:</strong> <span class="text-dark">{{formatDate tour.ngaydi}}</span></p>
             <p><strong>Thời gian:</strong> <span class="text-dark">{{tour.date}}</span></p>
             <p><strong>Số vị trí còn:</strong> <span class="text-danger fw-bold">{{tour.slot}}</span></p>
 
@@ -171,7 +171,7 @@
     </section>
 </div>
 
- <!-- Back to Top -->
+<!-- Back to Top -->
         <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
         
         <!-- JavaScript Libraries -->

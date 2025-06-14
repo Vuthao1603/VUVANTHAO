@@ -6,4 +6,3 @@ const BlogController = require("../app/controllers/BlogController");
 router.get("/", BlogController.index); // Get all blogs
 
 module.exports = router;
-

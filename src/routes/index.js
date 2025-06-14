@@ -9,8 +9,7 @@ const aboutRouter = require("./about");
 const servicesRouter = require("./services");
 const blogRouter = require("./blog");
 const contactRouter = require("./contact");
-
-
+const bookingRouter = require("./my-booking");
 
 function routes(app) {
   app.use("/news", newsRouter);
@@ -23,7 +22,7 @@ function routes(app) {
   app.use("/services", servicesRouter);
   app.use("/blog", blogRouter);
   app.use("/contact", contactRouter);
-
+  app.use("/my-booking", bookingRouter);
 }
 
 module.exports = routes;

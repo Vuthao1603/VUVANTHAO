@@ -17,22 +17,19 @@ class TourController {
 
   // [GET] /tours/create
   create(req, res, next) {
-    res.render("tours/create"
-      , {
-        layout: "admin-edit-layout",
-      }
-    );
+    res.render("tours/create", {
+      layout: "admin-edit-layout",
+    });
   }
 
   //  [POST] /tours/store
   store(req, res, next) {
-
     const formData = req.body;
 
     // Xử lý lịch trình nếu có
     if (formData.lichtrinh) {
       formData.lichtrinh = Object.values(formData.lichtrinh).filter(
-        (item) => item.day || item.content // Loại bỏ các mục trống
+        (item) => item.day || item.content, // Loại bỏ các mục trống
       );
     }
 
@@ -53,9 +50,11 @@ class TourController {
   edit(req, res, next) {
     Tours.findById(req.params.id)
       .then(
-        (tour) => res.render("tours/edit", { tour: mongooseToObject(tour),
-          layout: "admin-edit-layout",
-         }), //fodel tours file edit.hbs
+        (tour) =>
+          res.render("tours/edit", {
+            tour: mongooseToObject(tour),
+            layout: "admin-edit-layout",
+          }), //fodel tours file edit.hbs
       )
       .catch(next);
   }
@@ -82,20 +81,6 @@ class TourController {
       });
   }
 
-  // [GET] /api/tours/search
-  liveSearch(req, res, next) {
-    const q = req.query.q; // Lấy từ khóa tìm kiếm từ query string
-
-    Tours.find({ name: { $regex: q, $options: "i" } }) // Tìm kiếm gần đúng theo tên
-      .then((tours) => {
-        res.json(tours); // Trả về kết quả dưới dạng JSON
-      })
-      .catch((error) => {
-        console.error("Lỗi tìm kiếm:", error);
-        res.status(500).json({ error: "Lỗi server" });
-      });
-  }
-
   // [GET] /tours/:slug/book
   book(req, res, next) {
     Tours.findOne({ slug: req.params.slug }) // Tìm tour theo slug
@@ -103,7 +88,10 @@ class TourController {
         if (!tour) {
           return res.status(404).send("Tour not found");
         }
-        res.render("book-tour", { layout: "about-layout", tour: mongooseToObject(tour) });
+        res.render("book-tour", {
+          layout: "about-layout",
+          tour: mongooseToObject(tour),
+        });
       })
       .catch(next);
   }
@@ -117,8 +105,14 @@ class TourController {
           return res.status(404).send("Tour not found");
         }
 
-        // Tính tổng tiền
-        const totalPrice = parseInt(tour.gia) * parseInt(req.body.soluong || 1);
+        const soLuongNguoiLon = parseInt(req.body.soLuongNguoiLon || 0);
+        const soLuongTreEm = parseInt(req.body.soLuongTreEm || 0);
+        const soLuongEmBe = parseInt(req.body.soLuongEmBe || 0);
+
+        const totalPrice =
+          soLuongNguoiLon * parseInt(tour.gia) +
+          soLuongTreEm * parseInt(tour.giatreem) +
+          soLuongEmBe * parseInt(tour.giaembe);
 
         // Tạo dữ liệu đặt tour
         const bookingData = {
@@ -132,6 +126,9 @@ class TourController {
           ngaydi: req.body.departure,
           note: req.body.note,
           totalPrice: totalPrice,
+          soLuongNguoiLon: parseInt(req.body.soLuongNguoiLon || 0),
+          soLuongTreEm: parseInt(req.body.soLuongTreEm || 0),
+          soLuongEmBe: parseInt(req.body.soLuongEmBe || 0),
         };
 
         // Lưu vào cơ sở dữ liệu
@@ -139,7 +136,7 @@ class TourController {
         return booking.save();
       })
       .then(() => {
-        res.redirect("/"); 
+        res.redirect("/");
       })
       .catch(next);
   }

@@ -36,6 +36,17 @@
         </div>
 
         <div class="form-group">
+            <label for="giatreem" class="form-label"> Giá trẻ em </label>
+            <input type="text" class="form-control" id="giatreem" name="giatreem">
+        </div>
+
+        <div class="form-group">
+            <label for="giaembe" class="form-label"> Giá em bé </label>
+            <input type="text" class="form-control" id="giaembe" name="giaembe">
+        </div>
+
+
+        <div class="form-group">
             <label for="gia" class="form-label">Số lượng</label>
             <input type="text" class="form-control" id="slot" name="slot" required>
         </div>
@@ -100,6 +111,10 @@
             <input type="text" class="form-control" id="diemden" name="diemden">
         </div>
 
+<input type="hidden" name="soLuongNguoiLon" value="0">
+<input type="hidden" name="soLuongTreEm" value="0">
+<input type="hidden" name="soLuongEmBe" value="0">
+
         <button type="submit" class="btn btn-primary">Lưu</button>
     </form>
 </div>
@@ -107,21 +122,21 @@
 </body>
 <script>
   let lichtrinhIndex = 1; // Bắt đầu từ ngày thứ 
-  document.getElementById("add-lichtrinh").addEventListener("click", function () {
+document.getElementById("add-lichtrinh").addEventListener("click", function () {
     const container = document.getElementById("lichtrinh-container");
     const item = document.createElement("div");
     item.classList.add("lichtrinh-item");
     item.innerHTML = `
-      <div class="form-group">
+    <div class="form-group">
         <label for="day" class="form-label">Ngày</label>
         <input type="text" class="form-control" name="lichtrinh[${lichtrinhIndex}][day]" placeholder="Nhập ngày (ví dụ: Ngày ${lichtrinhIndex + 1})">
-      </div>
-      <div class="form-group">
+    </div>
+    <div class="form-group">
         <label for="content" class="form-label">Nội dung</label>
         <input type="text" class="form-control" name="lichtrinh[${lichtrinhIndex}][content]" placeholder="Nhập nội dung ngày ${lichtrinhIndex + 1}">
-      </div>
+    </div>
     `;
     container.appendChild(item);
     lichtrinhIndex++;
-  });
+});
 </script>
