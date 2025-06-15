@@ -214,7 +214,16 @@
           <span>Tổng tiền</span>
           <span id="tong-tien">{{formatPrice tour.totalPrice}}</span>
         </div>
+
+
       </div>
+
+<form action='/vnpay/create_payment' method="POST" onsubmit="return syncAmountBeforePay()">
+  <input type="hidden" id="amount-vnpay" name="amount" value="">
+  <button type="submit" class="btn btn-success">Thanh toán VNPay</button>
+</form>
+
+
     </div>
   </div>
 </div>

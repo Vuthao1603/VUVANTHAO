@@ -10,6 +10,7 @@ const servicesRouter = require("./services");
 const blogRouter = require("./blog");
 const contactRouter = require("./contact");
 const bookingRouter = require("./my-booking");
+const vnpayRouter = require("./vnpay");
 
 function routes(app) {
   app.use("/news", newsRouter);
@@ -23,6 +24,7 @@ function routes(app) {
   app.use("/blog", blogRouter);
   app.use("/contact", contactRouter);
   app.use("/my-booking", bookingRouter);
+  app.use("/vnpay", vnpayRouter);
 }
 
 module.exports = routes;
